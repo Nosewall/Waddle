@@ -1,6 +1,5 @@
 import {useState, useEffect} from "react";
-import eventCard from "../components/eventCard";
-import EventCard from "../components/eventCard";
+import EventCard from "../components/events/eventCard";
 
 let testEventData = {
     scope: "North America",
