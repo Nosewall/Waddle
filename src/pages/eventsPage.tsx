@@ -34,7 +34,7 @@ function eventsPage(props){
                 <button>Regional</button>
                 <button>Local</button>
             </div>
-            <div className="eventCards">
+            <div className="eventCards text-red-600">
                 {events.map(event => (
                     <EventCard
                         scope={event.scope}
@@ -44,6 +44,7 @@ function eventsPage(props){
                         body={event.body}
                         contactInfo={event.contactInfo}
                         usersAttending={event.usersAttending}>
+                        {props.children}
                     </EventCard>
                 ))}
             </div>
