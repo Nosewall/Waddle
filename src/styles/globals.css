@@ -30,7 +30,6 @@ a {
     border: 1px solid black;
     border-radius: theme('borderRadius.lg');
     box-shadow: theme('boxShadow.xl');
-    background-color: #70D6ff;
   }
   .scopeFilterButtons:hover{
     box-shadow: theme('boxShadow.2xl');

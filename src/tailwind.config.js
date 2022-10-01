@@ -16,7 +16,13 @@ module.exports = {
         'boldPink' : "#F15BB5",
         'boldYellow' : "#FEE440",
         'boldBlue' : "#00BBF9",
-        'boldCyan' : "#00F5D4"
+        'boldCyan' : "#00F5D4",
+        'darkOrange' : "#faba23",
+        'darkCyan' : "#40ff50",
+
+        'boldGreen' : "#22c55e",
+        'boldRed' : "#f43f5e",
+        'shadowBlack' : "#2b2b2b"
       },
     },
   },

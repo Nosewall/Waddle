@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 import EventCard from "../components/events/eventCard";
 
 let testEventData = {
-    scope: "Local",
+    scope: "Global",
     location: "SAP Vancouver",
     time: "4:00PM Pacific",
     title: "SAP Invitational Hackathon",
@@ -25,16 +25,16 @@ function eventsPage(props){
     }
 
     useEffect(() => {
-        fetchEvents()
+        fetchEvents().then()
     }, [])
 
     return (
 
         <div className="eventsPage bg-slate-50">
             <div className="regionButtons flex justify-evenly w-100 min-h-full">
-                <button className={"scopeFilterButtons bg-pastelOrange hover:bg-boldYellow"}>Global</button>
+                <button className={"scopeFilterButtons bg-pastelOrange hover:bg-darkOrange"}>Global</button>
                 <button className={"scopeFilterButtons bg-pastelPurple hover:bg-boldPurple"}>Regional</button>
-                <button className={"scopeFilterButtons hover:bg-boldBlue"}>Local</button>
+                <button className={"scopeFilterButtons bg-pastelBlue hover:bg-boldBlue"}>Local</button>
             </div>
             <div>
                 {events.map(event => (
