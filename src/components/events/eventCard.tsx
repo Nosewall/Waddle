@@ -13,15 +13,40 @@ type EventProps = {
     children: React.ReactNode
 }
 
+
+
 function EventCard(props : EventProps) {
 
+    const [attending, setAttending] = useState([])
+
+    const fetchAttenting = async () => {
+        //TODO Actually grab this data from db
+    }
+
+    function getColor(){
+        let color = "pastelOrange"
+        if(props.scope == "Global"){
+            color = "pastelOrange"
+        } else if(props.scope == "Regional"){
+            color = "pastelPurple"
+        } else if(props.scope == "Local"){
+            color = "pastelBlue"
+        }
+        return color
+    }
+    let color = getColor();
 
     return (
-        <div className={"rounded-3xl text-red-600 bg-amber-600 "}>
-            <h1 className={""}>Hello, {props.title}</h1>
-            <h2>{props.time}</h2>
-            <h2>{props.title}</h2>
-            <h4>{props.body}</h4>
+        <div className={"overflow-hidden rounded-2xl border-black border-[1px] m-3 text-black bg-amber-50 shadow-2xl" }>
+            <h1 className={" font-extrabold border-black bottomLine p-1 " + "bg-" + color + ""}>{props.title}</h1>
+            <h2 className={"font-bold p-1"}>{props.time}</h2>
+            <h2 className={"p-1"}>{props.location}</h2>
+            <h3 className={"p-1"}>{props.contactInfo}</h3>
+            <h4 className={"p-1"}>{props.body}</h4>
+            <div className={"attendingButtons"}>
+                <button className={"p1 border-[1px solid black] "}>I'm Attending!</button>
+
+            </div>
         </div>
     )
 

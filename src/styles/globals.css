@@ -19,6 +19,31 @@ a {
   box-sizing: border-box;
 }
 
+@layer components{
+  .scopeFilterButtons{
+    color: black;
+    padding-right: theme('spacing.6');
+    padding-left: theme('spacing.6');
+    padding-bottom: theme('spacing.2');
+    padding-top: theme('spacing.2');
+    margin: 4px;
+    border: 1px solid black;
+    border-radius: theme('borderRadius.lg');
+    box-shadow: theme('boxShadow.xl');
+    background-color: #70D6ff;
+  }
+  .scopeFilterButtons:hover{
+    box-shadow: theme('boxShadow.2xl');
+    background-color: #00BBF9;
+    transition-duration: .5s;
+  }
+
+  .bottomLine{
+    border-bottom: 1px solid black;
+    width: 100%;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

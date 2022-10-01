@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 import EventCard from "../components/events/eventCard";
 
 let testEventData = {
-    scope: "North America",
+    scope: "Local",
     location: "SAP Vancouver",
     time: "4:00PM Pacific",
     title: "SAP Invitational Hackathon",
@@ -19,7 +19,8 @@ function eventsPage(props){
 
     //Grabs all events. For now we'll just set this to my default event
     const fetchEvents = async () => {
-        const data = [testEventData]
+        //TODO Actually grab this data from the DB
+        const data = [testEventData, testEventData, testEventData, testEventData, testEventData, testEventData, testEventData, testEventData, testEventData, testEventData, ]
         setEvents(data)
     }
 
@@ -28,13 +29,14 @@ function eventsPage(props){
     }, [])
 
     return (
-        <div className="eventsPage">
-            <div className="regionButtons">
-                <button>Global</button>
-                <button>Regional</button>
-                <button>Local</button>
+
+        <div className="eventsPage bg-slate-50">
+            <div className="regionButtons flex justify-evenly w-100 min-h-full">
+                <button className={"scopeFilterButtons bg-pastelOrange hover:bg-boldYellow"}>Global</button>
+                <button className={"scopeFilterButtons bg-pastelPurple hover:bg-boldPurple"}>Regional</button>
+                <button className={"scopeFilterButtons hover:bg-boldBlue"}>Local</button>
             </div>
-            <div className="eventCards text-red-600">
+            <div>
                 {events.map(event => (
                     <EventCard
                         scope={event.scope}
