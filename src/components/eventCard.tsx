@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from 'react'; // importing FunctionComponent
+import { useEffect, useState } from 'react';
 
 type EventProps = {
-    regionality: string,
+    scope: string,
     location: string,
     time: string,
     title: string,
@@ -11,10 +12,18 @@ type EventProps = {
     usersAttending: []
 }
 
-class EventCard extends React.Component {
-    render(){
-        return <div>
-            <h1>Hello, {this.props.title}</h1>
+function EventCard(props : EventProps) {
+
+
+    return (
+        <div>
+            <h1>Hello, {props.title}</h1>
+            <h2>{props.time}</h2>
+            <h2>{props.title}</h2>
+            <h4>{props.body}</h4>
         </div>
-    }
+    )
+
 }
+
+export default EventCard
