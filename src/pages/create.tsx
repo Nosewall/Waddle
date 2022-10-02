@@ -3,6 +3,9 @@ import CanvasDraw from 'react-canvas-draw';
 import React from 'react';
 import { useRouter } from 'next/router';
 import HamburgerMenu from "../components/nav/hamburgerMenu";
+import {motion} from "framer-motion";
+import Image from "next/Image";
+import waddles from "../public/walbert/waddles.gif"
 
 import axios from 'axios';
 
@@ -16,6 +19,9 @@ const axiosBase = axios.create({
 
 
 export default function createPage() {
+    const [showDuck, setDuck] = useState(false)
+    const toggleDuck = () => setDuck(!showDuck)
+
     const YELLOW_STICKY = 'https://i.imgur.com/0xNiaGS.png';
     const PINK_STICKY = 'https://i.imgur.com/m6QhPwq.png';
     const GREEN_STICKY = 'https://i.imgur.com/JwVnDO6.png';
@@ -41,8 +47,10 @@ export default function createPage() {
         };
 
         axiosBase.post('/create-message', data).then(() => {
-            router.push('/');
+            // move duck and clear board
         });
+        toggleDuck();
+        canvasRef.current.clear()
     };
 
     const clearSticky = () => {
@@ -234,6 +242,17 @@ export default function createPage() {
                         Post it!
                     </button>
                 </div>
+                { showDuck && (
+                    <motion.div
+                        animate={{opacity: 1, x: -1000, y: -1500}}
+                        initial={{opacity: 0, y: -300, x: 500}}
+                        transition={{duration: 5}}
+                        className={"z-50"}>
+                        <Image src={waddles}
+                        />
+
+                    </motion.div>
+                )}
             </div>
         </>
     );
