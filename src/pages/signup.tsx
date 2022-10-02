@@ -79,11 +79,11 @@ const Signup = () => {
                         onChange={handleChange}
                     />
                 </label>
-                <div>
+                <div className={"flex justify-evenly justify-center"}>
                     <label>
                         <p className='font-fun'>First Name</p>
                         <input
-                            className='font-business input w-[100%]'
+                            className='font-business input w-[98%]'
                             type={'text'}
                             name={'firstName'}
                             onChange={handleChange}
@@ -92,7 +92,7 @@ const Signup = () => {
                     <label>
                         <p className='font-fun'>Last Name</p>
                         <input
-                            className='font-business input w-[100%]'
+                            className='font-business input w-[98%]'
                             type={'text'}
                             name={'lastName'}
                             onChange={handleChange}
