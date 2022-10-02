@@ -15,8 +15,10 @@ export default function createPage() {
     const [stickyColour, setStickyColour] = useState(YELLOW_STICKY);
 
     const saveSticky = () => {
-        console.log(canvasRef.current.getSaveData());
+        let blob = canvasRef.current.getSaveData();
+        console.log(blob);
         console.log(stickyColour);
+        console.log("type of = " + typeof blob);
     }
 
     const clearSticky = () => {
