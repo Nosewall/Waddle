@@ -6,6 +6,10 @@
   font-family: "virgil";
   src: url("../public/fonts/Virgil.woff2");
 }
+@font-face {
+  font-family: "jetbrains";
+  src: url("../public/fonts/JetBrains.woff2");
+}
 
 html,
 body {
