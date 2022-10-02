@@ -4,7 +4,7 @@ function Waddln(){
     return (
         <>
             <HamburgerMenu/>
-            <div className={"flex justify-center w-full h-full font-fun align-middle my-[30%]"}>
+            <div className={"flex justify-center w-full h-full font-fun align-middle m-4"}>
                 <div className={"text-center border-[1px] border-black"}>
                     <h1 className={"p-5 text-3xl"}>Who's Desk are you Waddln' to?</h1>
                     <div className={"m-5"}>
