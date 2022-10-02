@@ -25,8 +25,8 @@ router.post('/signup', (req, res) => {
         }
 
         connection.query(
-            `INSERT INTO user (userId, email, password, firstName, lastName, displayName, status, region, city, title)
-             VALUES ("${userID}", "${email}", "${password}", "${firstName}", "${lastName}", "${displayName}", "${status}", "${region}", "${city}", "${title}")`,
+            `INSERT INTO user (userId, email, password, firstName, lastName, region, city)
+             VALUES ("${userID}", "${email}", "${password}", "${firstName}", "${lastName}", "${region}", "${city}")`,
             (sqlErr, sqlRes) => {
                 if (sqlErr) {
                     console.error(sqlErr);
