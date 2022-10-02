@@ -1,19 +1,10 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import CanvasDraw from 'react-canvas-draw';
 import React from 'react';
 import { useRouter } from 'next/router';
-import HamburgerMenu from "../components/nav/hamburgerMenu";
-
-import axios from 'axios';
-
-const axiosBase = axios.create({
-    baseURL: 'http://localhost:9400',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-});
-
-
+import HamburgerMenu from '../components/nav/hamburgerMenu';
+import axiosBase from './axiosBase';
+import { useAuth } from '../components/context/AuthContext';
 
 export default function createPage() {
     const YELLOW_STICKY = 'https://i.imgur.com/0xNiaGS.png';
@@ -24,6 +15,11 @@ export default function createPage() {
     const canvasRef = useRef<any>(null);
 
     const router = useRouter();
+    const { CheckSession, GetUserId, GetName } = useAuth();
+
+    useEffect(() => {
+        if (!CheckSession()) router.push('/login');
+    }, []);
 
     const [brushColour, setBrushColour] = useState('#222222');
     const [stickyColour, setStickyColour] = useState(YELLOW_STICKY);
@@ -32,9 +28,9 @@ export default function createPage() {
 
     const saveSticky = () => {
         let blob = canvasRef.current.getSaveData();
-        console.log(blob)
         const data = {
-            userId: 'da7b3227-5a9e-4c7e-a047-7061840ccdb1',
+            userId: GetUserId(),
+            name: GetName(),
             email: receipientEmail,
             body: blob,
             bodyColour: colourString,
@@ -92,15 +88,23 @@ export default function createPage() {
                 <p className='font-fun text-2xl my-6'>Draft Your Sticky</p>
 
                 <label className='font-fun'>Waddle to: </label>
-                <input className="input w-4/12 enabled:hover:border-orange-600
-            focus:ring-2 ring-organge-400"
-                    type="text" required={true} placeholder="Receipient email"
-                    value={receipientEmail} onChange={e => { setRecepientEmail(e.target.value) }} />
+                <input
+                    className='input w-4/12 enabled:hover:border-orange-600
+            focus:ring-2 ring-organge-400'
+                    type='text'
+                    required={true}
+                    placeholder='Receipient email'
+                    value={receipientEmail}
+                    onChange={(e) => {
+                        setRecepientEmail(e.target.value);
+                    }}
+                />
 
-                <div className="flex flex-col my-5 items-center">
-                    <p className="font-fun">Brush Colour</p>
-                    <div className="flex my-2 py-1.5">
-                        <button className="bg-purple-700 ring-purple-400 mx-1.5 rounded-full hover:ring-4
+                <div className='flex flex-col my-5 items-center'>
+                    <p className='font-fun'>Brush Colour</p>
+                    <div className='flex my-2 py-1.5'>
+                        <button
+                            className="bg-purple-700 ring-purple-400 mx-1.5 rounded-full hover:ring-4
                         focus:border-stone-900 focus:ring-2 focus:outline-dotted focus:outline-offset-4'"
                             id='purple-brush'
                             onClick={selectPurple}>

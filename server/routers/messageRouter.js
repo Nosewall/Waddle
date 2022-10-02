@@ -4,7 +4,7 @@ import getConnection from '../utilities/dbConnection.js';
 const router = express.Router();
 
 router.post('/create-message', (req, res) => {
-    const { userId, email, body } = req.body;
+    const { userId, name, email, body, bodyColour } = req.body;
 
     const cleanedBody = body.replace(/"/g, "'");
 
@@ -15,7 +15,7 @@ router.post('/create-message', (req, res) => {
         }
 
         connection.query(
-            `INSERT INTO message (senderId, recipient, body, seen) VALUES ("${userId}", "${email}", "${cleanedBody}", "${0}")`,
+            `INSERT INTO message (senderId, senderName, recipient, body, bodyColour, seen) VALUES ("${userId}", "${name}", "${email}", "${cleanedBody}", "${bodyColour}", "${0}")`,
             (sqlErr, sqlRes) => {
                 if (sqlErr) {
                     console.error(sqlErr);

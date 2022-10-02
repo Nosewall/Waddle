@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useAuth } from '../components/context/AuthContext';
 import EventCard from '../components/events/eventCard';
 import HamburgerMenu from '../components/nav/hamburgerMenu';
+import axiosBase from './axiosBase';
 
 let testEventData = {
     scope: 'Global',
@@ -32,17 +35,11 @@ let testRegionalData = {
     //TODO Add image Field
     usersAttending: [],
 };
-function events(props) {
+function events({ props }: any) {
     let pageLoaded = false;
     //The state for the list of events
     const [events, setEvents] = useState([]);
     const [allevents, setAllEvents] = useState([]);
-    const fetchAllEvents = async () => {
-        //TODO Actually grab this data from the DB
-        const data = [testEventData, testLocalData, testRegionalData];
-        setEvents(data);
-        setAllEvents(data);
-    };
     function filterList(newFilter) {
         setEvents([]);
         let newEventsList = [];
@@ -73,17 +70,27 @@ function events(props) {
         setEvents(newEventsList);
         console.log(events);
     }
+
+    const { CheckSession } = useAuth();
+    const router = useRouter();
+
     useEffect(() => {
+        if (!CheckSession()) router.push('/login');
         if (!pageLoaded) {
             pageLoaded = true;
-            fetchAllEvents();
+            //fetchAllEvents();
         }
+        axiosBase.get('/get-all-events').then((response) => {
+            setEvents(response.data);
+            setAllEvents(response.data);
+            console.log(response.data);
+        });
     }, []);
 
     return (
         <>
-            <HamburgerMenu/>
-            <div className="flex flex-col items-center">
+            <HamburgerMenu />
+            <div className='flex flex-col items-center'>
                 <p className='font-fun text-2xl my-6'>Events</p>
                 <div className='font-fun font-extrabold regionButtons flex justify-evenly w-100 min-h-full'>
                     <button
@@ -109,7 +116,7 @@ function events(props) {
                     </button>
                 </div>
                 <div>
-                    {events.map((event, index) => (
+                    {events.map((event: any, index) => (
                         <EventCard
                             key={index}
                             scope={event.scope}
@@ -118,9 +125,7 @@ function events(props) {
                             title={event.title}
                             body={event.body}
                             contactInfo={event.contactInfo}
-                            usersAttending={event.usersAttending}>
-                            {props.children}
-                        </EventCard>
+                        />
                     ))}
                 </div>
             </div>
