@@ -19,10 +19,13 @@ function MobileNav({open, setOpen}) {
             </div>
             <div className="flex flex-col ml-4 font-fun">
                 <a className="text-xl font-medium my-4" href="/create" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
-                    Waddle
+                    Sticky
                 </a>
                 <a className="text-xl font-normal my-4" href="/events" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
                     Events
+                </a>
+                <a className="text-xl font-normal my-4" href="/waddln" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
+                    Wadln
                 </a>
             </div>
         </div>
@@ -53,10 +56,13 @@ export default function HamburgerMenu() {
 
                 <div className="hidden md:flex font-fun">
                     <NavLink to="/create">
-                        Waddle
+                        Sticky
                     </NavLink>
                     <NavLink to="/events">
                         Events
+                    </NavLink>
+                    <NavLink to="/waddln">
+                        Wadln
                     </NavLink>
                 </div>
             </div>

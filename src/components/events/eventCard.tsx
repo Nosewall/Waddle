@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from 'react'; // importing FunctionComponent
 import { useEffect, useState } from 'react';
 
-
 type EventProps = {
     scope: string,
     location: string,
@@ -14,26 +13,7 @@ type EventProps = {
     children: React.ReactNode
 }
 
-
-
 function EventCard(props : EventProps) {
-
-    const [attending, setAttending] = useState([])
-    const [attendanceColor, setAttendance] = useState([])
-
-    const fetchAttenting = async () => {
-        //TODO Actually grab this data from db
-        setAttending(["Not Attending", true])
-    }
-
-    const getAttendanceColor = () => {
-        if(!attending[1]){
-            setAttendance(["greySelect", "pastelGreen"] )
-        }else{
-            setAttendance(["boldGreen", "pastelGreen"])
-        }
-
-    }
 
     const getColor = (scope) => {
         if(scope == "Global"){
