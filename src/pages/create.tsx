@@ -87,7 +87,7 @@ export default function createPage() {
         <>
             <HamburgerMenu />
             <div className='flex flex-col items-center'>
-                <p className='font-fun text-xl mb-5'>Draft Your Sticky</p>
+                <p className='font-fun text-2xl my-6'>Draft Your Sticky</p>
 
                 <label className='font-fun'>Waddle to: </label>
                 <input className="input w-4/12 enabled:hover:border-orange-600
