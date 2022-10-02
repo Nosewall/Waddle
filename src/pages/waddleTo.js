@@ -5,18 +5,24 @@ import Sticky from '../components/home/Sticky';
 import HamburgerMenu from '../components/nav/hamburgerMenu';
 import axiosBase from './axiosBase';
 
-export default function Home() {
+export default function waddleTo() {
     const router = useRouter();
     const { CheckSession, GetUserId } = useAuth();
 
     const [stickies, setStickies] = useState([]);
+    const [name, setName] = useState('');
 
     useEffect(() => {
         if (!CheckSession()) router.push('/login');
+        const data = router.query;
+        setName(data.email.split('@')[0]);
         axiosBase
-            .post('/get-messages', { userId: GetUserId() })
+            .post('/get-others-messages', data)
             .then((response) => {
                 setStickies(response.data);
+            })
+            .catch((err) => {
+                console.error(err);
             });
     }, []);
 
@@ -24,7 +30,7 @@ export default function Home() {
         <>
             <HamburgerMenu />
             <div className='flex flex-col items-center page-containe'>
-                <p className='font-fun text-2xl my-6'>Your Stickies</p>
+                <p className='font-fun text-2xl my-6'>{name}'s Stickies</p>
 
                 <div>
                     {stickies.map((sticky, i) => (

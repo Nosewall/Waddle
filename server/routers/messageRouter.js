@@ -52,4 +52,27 @@ router.post('/get-messages', (req, res) => {
     });
 });
 
+router.post('/get-others-messages', (req, res) => {
+    const { email } = req.body;
+
+    getConnection((connectionErr, connection) => {
+        if (connectionErr) {
+            console.error(connectionErr);
+            return res.status(400).send('Connection failure.');
+        }
+
+        connection.query(
+            `SELECT * FROM message WHERE recipient = ("${email}")`,
+            (sqlErr, sqlRes) => {
+                if (sqlErr) {
+                    console.error(sqlErr);
+                    return res.status(400).send('Something went wrong...');
+                }
+
+                return res.status(200).send(sqlRes);
+            }
+        );
+    });
+});
+
 export default router;
