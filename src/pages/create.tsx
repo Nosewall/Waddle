@@ -30,8 +30,6 @@ export default function createPage() {
 
     const canvasRef = useRef<any>(null);
 
-    const router = useRouter();
-
     const [brushColour, setBrushColour] = useState('#222222');
     const [stickyColour, setStickyColour] = useState(YELLOW_STICKY);
     const [colourString, setColourString] = useState('Yellow');
