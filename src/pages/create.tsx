@@ -20,8 +20,8 @@ const axiosBase = axios.create({
 
 
 export default function createPage() {
-    const [showDuck, setDuck] = useState(false)
-    const toggleDuck = () => setDuck(!showDuck)
+    const [showDuck, setShowDuck] = useState(false);
+    const toggleDuck = () => setShowDuck(!showDuck);
 
     const YELLOW_STICKY = 'https://i.imgur.com/0xNiaGS.png';
     const PINK_STICKY = 'https://i.imgur.com/m6QhPwq.png';
@@ -59,6 +59,7 @@ export default function createPage() {
         canvasRef.current.clear()
         setShowSuccess(true);
         setTimeout(() => { setShowSuccess(false) }, 3000);
+        setTimeout(() => { setShowDuck(!showDuck) }, 5000);
 
         // error
         setShowError(true);
