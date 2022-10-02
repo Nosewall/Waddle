@@ -1,5 +1,7 @@
 import {useState, useEffect} from "react";
 import EventCard from "../components/events/eventCard";
+import HamburgerMenu from "../components/nav/hamburgerMenu";
+
 let testEventData = {
     scope: "Global",
     location: "SAP Vancouver",
@@ -78,6 +80,7 @@ function events(props){
     return (
 
         <div className="eventsPage bg-slate-50">
+            <HamburgerMenu></HamburgerMenu>
                 <div className="font-fun font-extrabold regionButtons flex justify-evenly w-100 min-h-full">
                     <button className={"scopeFilterButtons bg-pastelOrange hover:bg-darkOrange"} onClick={() => filterList("Global")}>Global</button>
                     <button className={"scopeFilterButtons bg-pastelPurple hover:bg-boldPurple"} onClick={() => filterList("Regional")}>Regional</button>
