@@ -2,6 +2,11 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+@font-face {
+  font-family: "virgil";
+  src: url("../public/fonts/Virgil.woff2");
+}
+
 html,
 body {
   padding: 0;

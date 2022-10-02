@@ -30,8 +30,8 @@ function eventsPage(props){
 
     return (
 
-        <div className="eventsPage bg-slate-50">
-            <div className="regionButtons flex justify-evenly w-100 min-h-full">
+        <div className="eventsPage bg-slate-50 font-sans">
+            <div className="font-fun font-bold regionButtons flex justify-evenly w-100 min-h-full">
                 <button className={"scopeFilterButtons bg-pastelOrange hover:bg-darkOrange"}>Global</button>
                 <button className={"scopeFilterButtons bg-pastelPurple hover:bg-boldPurple"}>Regional</button>
                 <button className={"scopeFilterButtons bg-pastelBlue hover:bg-boldBlue"}>Local</button>

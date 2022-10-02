@@ -2,6 +2,10 @@
 module.exports = {
   content: ["./pages/*.{ts,tsx}", "./components/events/*.{ts,tsx}"],
   theme: {
+    fontFamily: {
+      'fun': ['virgil'],
+      'business': ['virgil']
+    },
     extend: {
       colors: {
         'pastelBlue' : "#70D6ff",
