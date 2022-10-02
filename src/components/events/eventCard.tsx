@@ -9,7 +9,6 @@ type EventProps = {
     body: string,
     contactInfo: string,
     //TODO Add image Field
-    usersAttending: [],
     children: React.ReactNode
 }
 
