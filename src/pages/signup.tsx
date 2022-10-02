@@ -61,13 +61,13 @@ const Signup = () => {
                 <label>
                     <p className="font-fun">Email</p>
                     <input
-                        className="font-business input"
+                        className="font-business input w-[100%]"
                         type={'email'} name={'email'} onChange={handleChange} />
                 </label>
                 <label>
                     <p className="font-fun">Password</p>
                     <input
-                        className="font-business input"
+                        className="font-business input w-[100%]"
                         type={'password'}
                         name={'password'}
                         onChange={handleChange}
@@ -77,7 +77,7 @@ const Signup = () => {
                     <label>
                         <p className="font-fun">First Name</p>
                         <input
-                            className="font-business input"
+                            className="font-business input w-[100%]"
                             type={'text'}
                             name={'firstName'}
                             onChange={handleChange}
@@ -86,7 +86,7 @@ const Signup = () => {
                     <label>
                         <p className="font-fun">Last Name</p>
                         <input
-                            className="font-business input"
+                            className="font-business input w-[100%]"
                             type={'text'}
                             name={'lastName'}
                             onChange={handleChange}
@@ -95,11 +95,15 @@ const Signup = () => {
                 </div>
                 <label>
                     <p className="font-fun">Region</p>
-                    <input className="font-business input" type={'text'} name={'region'} onChange={handleChange} />
+                    <select onChange={handleChange} className={"input font-business input w-[100%]"}>
+                        <option value={"AM"}>Americas</option>
+                        <option value={"APJ"}>Asia</option>
+                        <option value={"EU"}>Europe</option>
+                    </select>
                 </label>
                 <label>
                     <p className="font-fun">City</p>
-                    <input className="font-business input" type={'text'} name={'city'} onChange={handleChange} />
+                    <input className="font-business input w-[100%]" type={'text'} name={'city'} onChange={handleChange} />
                 </label>
                 <div className='submit flex flex-col my-5'>
                     <button className="bg-pastelTangerine hover:bg-orange-500 scopeFilterButtons font-fun" type={'submit'}>Submit</button>
