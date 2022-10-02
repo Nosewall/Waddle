@@ -29,7 +29,6 @@ export default function createPage() {
     const [receipientEmail, setRecepientEmail] = useState('');
 
     const saveSticky = () => {
-        console.log(receipientEmail);
         const data = {
             userId: 'da7b3227-5a9e-4c7e-a047-7061840ccdb1',
             email: receipientEmail,
