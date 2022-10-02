@@ -14,7 +14,7 @@ let testEventData = {
 
 let testLocalData = {
     scope: "Local",
-    location: "SAP Vancouver",
+    location: "Local",
     time: "4:00PM Pacific",
     title: "SAP Invitational Hackathon",
     body: "This is an invitation only hackathon for only the 1337est of Haxors",
@@ -25,7 +25,7 @@ let testLocalData = {
 
 let testRegionalData = {
     scope: "Regional",
-    location: "SAP Vancouver",
+    location: "Regional",
     time: "4:00PM Pacific",
     title: "SAP Invitational Hackathon",
     body: "This is an invitation only hackathon for only the 1337est of Haxors",
@@ -45,25 +45,37 @@ function eventsPage(props){
 
     const fetchAllEvents = async () => {
         //TODO Actually grab this data from the DB
-        const data = [testEventData, testLocalData, testRegionalData, testEventData, testEventData, testEventData, testEventData, testEventData, testEventData, testEventData, ]
+        const data = [testEventData, testLocalData, testRegionalData]
         setEvents(data)
         setAllEvents(data)
     }
 
     function filterList(newFilter){
+        setEvents([])
         let newEventsList = []
         switch (newFilter){
             case "Global":
                 for(let i = 0; i < allevents.length; i++){
-                    if(allevents[i].scope == "global"){
-
+                    newEventsList.push(allevents[i])
+                }
+                break;
+            case "Regional":
+                for(let i = 0; i < allevents.length; i++){
+                    if(allevents[i].scope == "Regional" || allevents[i].scope == "Local"){
+                        newEventsList.push(allevents[i])
                     }
                 }
-            case "Regional":
-                break
+                break;
             case "Local":
-                break
+                for(let i = 0; i < allevents.length; i++){
+                    if(allevents[i].scope == "Local"){
+                        newEventsList.push(allevents[i])
+                    }
+                }
+                break;
         }
+        setEvents(newEventsList)
+        console.log(events)
     }
 
 
@@ -73,19 +85,21 @@ function eventsPage(props){
             pageLoaded = true
             fetchAllEvents()
         }
+
     }, [])
 
     return (
 
         <div className="eventsPage bg-slate-50">
             <div className="font-fun font-extrabold regionButtons flex justify-evenly w-100 min-h-full">
-                <button className={"scopeFilterButtons bg-pastelOrange hover:bg-darkOrange"}>Global</button>
-                <button className={"scopeFilterButtons bg-pastelPurple hover:bg-boldPurple"}>Regional</button>
-                <button className={"scopeFilterButtons bg-pastelBlue hover:bg-boldBlue"} onClick={filterList("Global")}>Local</button>
+                <button className={"scopeFilterButtons bg-pastelOrange hover:bg-darkOrange"} onClick={() => filterList("Global")}>Global</button>
+                <button className={"scopeFilterButtons bg-pastelPurple hover:bg-boldPurple"} onClick={() => filterList("Regional")}>Regional</button>
+                <button className={"scopeFilterButtons bg-pastelBlue hover:bg-boldBlue"} onClick={() => filterList("Local")}>Local</button>
             </div>
             <div>
-                {events.map(event => (
+                {events.map((event, index) => (
                     <EventCard
+                        key={index}
                         scope={event.scope}
                         location={event.location}
                         time={event.time}
