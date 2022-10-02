@@ -245,7 +245,7 @@ export default function createPage() {
                 { showDuck && (
                     <motion.div
                         animate={{opacity: 1, x: -1000, y: -1500}}
-                        initial={{opacity: 0, y: -300, x: 500}}
+                        initial={{opacity: 0, y: -300, x: 100}}
                         transition={{duration: 5}}
                         className={"z-50"}>
                         <Image src={waddles}
