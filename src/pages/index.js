@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <>
       <HamburgerMenu />
-      <div className='flex flex-col items-center'>
+      <div className='flex flex-col items-center page-container'>
         <p className='font-fun text-2xl my-6'>Your Stickies</p>
 
         <div>

@@ -83,7 +83,7 @@ function events(props) {
     return (
         <>
             <HamburgerMenu/>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center page-container">
                 <p className='font-fun text-2xl my-6'>Events</p>
                 <div className='font-fun font-extrabold regionButtons flex justify-evenly w-100 min-h-full'>
                     <button
