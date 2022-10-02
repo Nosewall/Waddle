@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react';
 import CanvasDraw from 'react-canvas-draw';
 import React from 'react';
-import sticky from '../public/sticky_assets/blue_sticky.png';
 
 export default function createPage() {
 
