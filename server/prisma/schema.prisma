@@ -1,0 +1,53 @@
+generator Client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = "mysql://admin:123@localhost:3306/waddle_v2"
+}
+
+enum Region {
+    AM
+    APJ
+    EU
+}
+
+enum Scope {
+    Local
+    Regional
+    Global
+}
+
+model User {
+    userId      String    @id @default(cuid())
+    email       String    @unique
+    password    String
+    firstName   String
+    lastName    String
+    displayName String
+    status      String
+    region      Region
+    city        String
+    title       String
+    Message     Message[]
+}
+
+model Message {
+    messageId Int     @id @default(autoincrement())
+    sender    User    @relation(fields: [senderId], references: [userId])
+    senderId  String
+    recipient String
+    body      String
+    seen      Boolean @default(false)
+}
+
+model Event {
+    eventId     Int      @id @default(autoincrement())
+    scope       Scope
+    location    String
+    time        DateTime
+    title       String
+    body        String
+    contactInfo String
+}
