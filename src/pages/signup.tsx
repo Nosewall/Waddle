@@ -62,7 +62,7 @@ const Signup = () => {
 
             <form className='signup my-5' onSubmit={handleSubmit}>
                 <label>
-                    <p className='font-fun'>Email</p>
+                    <p className='font-business'>Email</p>
                     <input
                         className='font-business input w-[100%]'
                         type={'email'}
@@ -71,7 +71,7 @@ const Signup = () => {
                     />
                 </label>
                 <label>
-                    <p className='font-fun'>Password</p>
+                    <p className='font-business'>Password</p>
                     <input
                         className='font-business input w-[100%]'
                         type={'password'}
@@ -79,20 +79,20 @@ const Signup = () => {
                         onChange={handleChange}
                     />
                 </label>
-                <div>
+                <div className={"flex justify-evenly justify-center"}>
                     <label>
-                        <p className='font-fun'>First Name</p>
+                        <p className='font-business'>First Name</p>
                         <input
-                            className='font-business input w-[100%]'
+                            className='font-business input w-[98%]'
                             type={'text'}
                             name={'firstName'}
                             onChange={handleChange}
                         />
                     </label>
                     <label>
-                        <p className='font-fun'>Last Name</p>
+                        <p className='font-business'>Last Name</p>
                         <input
-                            className='font-business input w-[100%]'
+                            className='font-business input w-[98%]'
                             type={'text'}
                             name={'lastName'}
                             onChange={handleChange}
@@ -100,7 +100,7 @@ const Signup = () => {
                     </label>
                 </div>
                 <label>
-                    <p className='font-fun'>Region</p>
+                    <p className='font-business'>Region</p>
                     <select
                         onChange={handleChange}
                         className={'input font-business input w-[100%]'}
@@ -111,7 +111,7 @@ const Signup = () => {
                     </select>
                 </label>
                 <label>
-                    <p className='font-fun'>City</p>
+                    <p className='font-business'>City</p>
                     <input
                         className='font-business input w-[100%]'
                         type={'text'}

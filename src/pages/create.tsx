@@ -2,16 +2,17 @@ import { useRef, useState, useEffect } from 'react';
 import CanvasDraw from 'react-canvas-draw';
 import React from 'react';
 import { useRouter } from 'next/router';
-import HamburgerMenu from '../components/nav/hamburgerMenu';
+import HamburgerMenu from "../components/nav/hamburgerMenu";
+import { Modal, Toast } from 'flowbite-react';
 import axiosBase from './axiosBase';
+import { motion } from "framer-motion";
+import Image from "next/Image";
 import { useAuth } from '../components/context/AuthContext';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import waddles from '../public/walbert/waddles.gif';
+import waddles from "../public/walbert/waddles.gif"
 
 export default function createPage() {
-    const [showDuck, setDuck] = useState(false);
-    const toggleDuck = () => setDuck(!showDuck);
+    const [showDuck, setShowDuck] = useState(false);
+    const toggleDuck = () => setShowDuck(!showDuck);
 
     const YELLOW_STICKY = 'https://i.imgur.com/0xNiaGS.png';
     const PINK_STICKY = 'https://i.imgur.com/m6QhPwq.png';
@@ -31,6 +32,9 @@ export default function createPage() {
     const [stickyColour, setStickyColour] = useState(YELLOW_STICKY);
     const [colourString, setColourString] = useState('Yellow');
     const [receipientEmail, setRecepientEmail] = useState('');
+    const [showModal, setShowModal] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false);
+    const [showError, setShowError] = useState(false);
 
     const saveSticky = () => {
         let blob = canvasRef.current.getSaveData();
@@ -43,14 +47,21 @@ export default function createPage() {
         };
 
         axiosBase.post('/create-message', data).then(() => {
-            // move duck and clear board
+            toggleDuck();
+            canvasRef.current.clear()
+            setShowSuccess(true);
+            setTimeout(() => { setShowSuccess(false) }, 3000);
+            setTimeout(() => { setShowDuck(!showDuck) }, 5000);
+        }
+        ).catch((error) => {
+            setShowError(true);
+            setTimeout(() => { setShowError(false) }, 3000);
         });
-        toggleDuck();
-        canvasRef.current.clear();
     };
 
     const clearSticky = () => {
         canvasRef.current.clear();
+        setShowModal(false);
     };
 
     const selectPurple = () => {
@@ -89,16 +100,47 @@ export default function createPage() {
         setColourString('Blue');
     };
 
+    const onClose = () => {
+        setShowModal(false);
+    }
+
     return (
         <>
             <HamburgerMenu />
             <div className='flex flex-col items-center page-container'>
+
+                {showSuccess && (
+                    <div className="fixed z-30">
+                        <Toast>
+                            <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-boldPurple text-blue-500 dark:bg-blue-800 dark:text-blue-200">
+                                ✨
+                            </div>
+                            <div className="ml-3 text-sm font-normal">
+                                Walbert delivered your Sticky successfully!
+                            </div>
+                        </Toast>
+                    </div>
+                )}
+
+                {showError && (
+                    <div className="fixed z-30">
+                        <Toast>
+                            <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-red-500 text-blue-500 dark:bg-blue-800 dark:text-blue-200">
+                                🐻
+                            </div>
+                            <div className="ml-3 text-sm font-normal">
+                                Bad news bears! <br/> Something went wrong.
+                            </div>
+                        </Toast>
+                    </div>
+                )}
+
                 <p className='font-fun text-2xl my-6'>Draft Your Sticky</p>
 
-                <label className='font-fun'>Waddle to: </label>
+                <label className='font-fun'>Post to: </label>
                 <input
                     className='input w-4/12 enabled:hover:border-orange-600
-            focus:ring-2 ring-organge-400'
+            focus:ring-2 ring-orange-400'
                     type='text'
                     required={true}
                     placeholder='Receipient email'
@@ -243,7 +285,7 @@ export default function createPage() {
                 <div className='flex'>
                     <button
                         className='mr-10 font-fun bg-white hover:bg-greySelect scopeFilterButtons'
-                        onClick={clearSticky}>
+                        onClick={() => setShowModal(true)}>
                         Clear All
                     </button>
                     <button
@@ -254,6 +296,35 @@ export default function createPage() {
                         Post it!
                     </button>
                 </div>
+
+                <Modal
+                    show={showModal}
+                    size="md"
+                    popup={true}
+                    onClose={onClose}
+                >
+                    <Modal.Header />
+                    <Modal.Body>
+                        <div className="text-center">
+                            <h3 className="font-fun mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+                                Are you sure you want clear your sticky? Everything will be thrown out!
+                            </h3>
+                            <div className="flex justify-center gap-4">
+                                <button className="bg-pastelTangerine hover:bg-orange-500 scopeFilterButtons font-fun"
+                                    onClick={clearSticky}
+                                >
+                                    Yes, I'm sure
+                                </button>
+                                <button
+                                    className='mr-10 font-fun bg-white hover:bg-greySelect scopeFilterButtons'
+                                    onClick={onClose}
+                                >
+                                    No, cancel
+                                </button>
+                            </div>
+                        </div>
+                    </Modal.Body>
+                </Modal>
             </div>
         </>
     );
