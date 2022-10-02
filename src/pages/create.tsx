@@ -3,8 +3,8 @@ import CanvasDraw from 'react-canvas-draw';
 import React from 'react';
 import { useRouter } from 'next/router';
 import HamburgerMenu from "../components/nav/hamburgerMenu";
-import { Modal } from 'flowbite-react';
-import {motion} from "framer-motion";
+import { Modal, Toast } from 'flowbite-react';
+import { motion } from "framer-motion";
 import Image from "next/Image";
 import waddles from "../public/walbert/waddles.gif"
 
@@ -37,6 +37,8 @@ export default function createPage() {
     const [colourString, setColourString] = useState('Yellow');
     const [receipientEmail, setRecepientEmail] = useState('');
     const [showModal, setShowModal] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false);
+    const [showError, setShowError] = useState(false);
 
     const saveSticky = () => {
         let blob = canvasRef.current.getSaveData();
@@ -53,6 +55,7 @@ export default function createPage() {
         });
         toggleDuck();
         canvasRef.current.clear()
+        setShowSuccess(true);
     };
 
     const clearSticky = () => {
@@ -100,14 +103,23 @@ export default function createPage() {
         setShowModal(false);
     }
 
-    const onClick = () => {
-
-    }
-
     return (
         <>
             <HamburgerMenu />
             <div className='flex flex-col items-center page-container'>
+
+                {showSuccess && (
+                    <div className="fixed z-30">
+                        <Toast>
+                            <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-100 text-blue-500 dark:bg-blue-800 dark:text-blue-200">
+                            </div>
+                            <div className="ml-3 text-sm font-normal">
+                                Walbert delivered your Sticky successfully!
+                            </div>
+                        </Toast>
+                    </div>
+                )}
+
                 <p className='font-fun text-2xl my-6'>Draft Your Sticky</p>
 
                 <label className='font-fun'>Waddle to: </label>
@@ -282,11 +294,12 @@ export default function createPage() {
                         </div>
                     </Modal.Body>
                 </Modal>
-                { showDuck && (
+
+                {showDuck && (
                     <motion.div
-                        animate={{opacity: 1, x: -1000, y: -1500}}
-                        initial={{opacity: 0, y: -300, x: 100}}
-                        transition={{duration: 5}}
+                        animate={{ opacity: 1, x: -1000, y: -1500 }}
+                        initial={{ opacity: 0, y: -300, x: 500 }}
+                        transition={{ duration: 5 }}
                         className={"z-50"}>
                         <Image src={waddles}
                         />
