@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react";
 import EventCard from "../components/events/eventCard";
+import HameburgerMenu from "../components/nav/hameburgerMenu";
 
 let testEventData = {
     scope: "Global",
@@ -90,7 +91,12 @@ function eventsPage(props){
 
     return (
 
+<<<<<<< Updated upstream:src/pages/events.tsx
         <>
+=======
+        <div className="eventsPage bg-slate-50">
+            <HameburgerMenu></HameburgerMenu>
+>>>>>>> Stashed changes:src/pages/eventsPage.tsx
             <div className="font-fun font-extrabold regionButtons flex justify-evenly w-100 min-h-full">
                 <button className={"scopeFilterButtons bg-pastelOrange hover:bg-darkOrange"} onClick={() => filterList("Global")}>Global</button>
                 <button className={"scopeFilterButtons bg-pastelPurple hover:bg-boldPurple"} onClick={() => filterList("Regional")}>Regional</button>
