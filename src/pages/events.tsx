@@ -1,7 +1,5 @@
 import {useState, useEffect} from "react";
 import EventCard from "../components/events/eventCard";
-import HameburgerMenu from "../components/nav/hameburgerMenu";
-
 let testEventData = {
     scope: "Global",
     location: "SAP Vancouver",
@@ -12,7 +10,6 @@ let testEventData = {
     //TODO Add image Field
     usersAttending: []
 }
-
 let testLocalData = {
     scope: "Local",
     location: "Local",
@@ -23,7 +20,6 @@ let testLocalData = {
     //TODO Add image Field
     usersAttending: []
 }
-
 let testRegionalData = {
     scope: "Regional",
     location: "Regional",
@@ -34,23 +30,17 @@ let testRegionalData = {
     //TODO Add image Field
     usersAttending: []
 }
-
-function eventsPage(props){
-
+function events(props){
     let pageLoaded = false
-
     //The state for the list of events
     const [events, setEvents] = useState([])
     const [allevents, setAllEvents] = useState([])
-
-
     const fetchAllEvents = async () => {
         //TODO Actually grab this data from the DB
         const data = [testEventData, testLocalData, testRegionalData]
         setEvents(data)
         setAllEvents(data)
     }
-
     function filterList(newFilter){
         setEvents([])
         let newEventsList = []
@@ -78,47 +68,41 @@ function eventsPage(props){
         setEvents(newEventsList)
         console.log(events)
     }
-
-
-
     useEffect(() => {
         if(!pageLoaded){
             pageLoaded = true
             fetchAllEvents()
         }
-
     }, [])
 
     return (
 
-<<<<<<< Updated upstream:src/pages/events.tsx
-        <>
-=======
         <div className="eventsPage bg-slate-50">
-            <HameburgerMenu></HameburgerMenu>
->>>>>>> Stashed changes:src/pages/eventsPage.tsx
-            <div className="font-fun font-extrabold regionButtons flex justify-evenly w-100 min-h-full">
-                <button className={"scopeFilterButtons bg-pastelOrange hover:bg-darkOrange"} onClick={() => filterList("Global")}>Global</button>
-                <button className={"scopeFilterButtons bg-pastelPurple hover:bg-boldPurple"} onClick={() => filterList("Regional")}>Regional</button>
-                <button className={"scopeFilterButtons bg-pastelBlue hover:bg-boldBlue"} onClick={() => filterList("Local")}>Local</button>
-            </div>
-            <div>
-                {events.map((event, index) => (
-                    <EventCard
-                        key={index}
-                        scope={event.scope}
-                        location={event.location}
-                        time={event.time}
-                        title={event.title}
-                        body={event.body}
-                        contactInfo={event.contactInfo}
-                        usersAttending={event.usersAttending}>
-                        {props.children}
-                    </EventCard>
-                ))}
-            </div>
-        </>
-    )
+                <div className="font-fun font-extrabold regionButtons flex justify-evenly w-100 min-h-full">
+                    <button className={"scopeFilterButtons bg-pastelOrange hover:bg-darkOrange"} onClick={() => filterList("Global")}>Global</button>
+                    <button className={"scopeFilterButtons bg-pastelPurple hover:bg-boldPurple"} onClick={() => filterList("Regional")}>Regional</button>
+                    <button className={"scopeFilterButtons bg-pastelBlue hover:bg-boldBlue"} onClick={() => filterList("Local")}>Local</button>
+                </div>
+                <div>
+                    {events.map((event, index) => (
+                        <EventCard
+                            key={index}
+                            scope={event.scope}
+                            location={event.location}
+                            time={event.time}
+                            title={event.title}
+                            body={event.body}
+                            contactInfo={event.contactInfo}
+                            usersAttending={event.usersAttending}>
+                            {props.children}
+                        </EventCard>
+                    ))}
+                </div>
+        </div>
+
+)
 }
 
-export default eventsPage
+export default events
+
+
