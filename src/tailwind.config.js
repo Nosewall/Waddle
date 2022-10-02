@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./pages/*.{ts,tsx}", "./components/events/*.{ts,tsx}"],
+  content: ["./pages/*.{ts,tsx}", "./components/events/*.{ts,tsx}", "./components/nav/*.{tsx,js,ts}"],
   theme: {
     fontFamily: {
       'fun': ['virgil'],

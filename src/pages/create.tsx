@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import CanvasDraw from 'react-canvas-draw';
 import React from 'react';
 import { useRouter } from 'next/router';
+import HamburgerMenu from "../components/nav/hamburgerMenu";
 
 import axios from 'axios';
 
@@ -11,6 +12,8 @@ const axiosBase = axios.create({
         'Content-Type': 'application/json',
     },
 });
+
+
 
 export default function createPage() {
     const YELLOW_STICKY = 'https://i.imgur.com/0xNiaGS.png';
@@ -77,16 +80,18 @@ export default function createPage() {
     };
 
     return (
-        <div className='flex flex-col items-center'>
-            <p className='font-fun text-xl'>Draft Your Sticky</p>
 
-            <div className='flex flex-col my-5 items-center'>
-                <p className='font-fun'>Brush Colour</p>
-                <div className='flex my-2 py-1.5'>
-                    <button
-                        className='bg-purple-700 ring-purple-400 
-                mx-1.5 rounded-full hover:ring-4 
-                focus:border-stone-900 focus:ring-2 focus:outline-dotted focus:outline-offset-4'
+        <>
+            <HamburgerMenu/>
+        <div className="flex flex-col items-center">
+
+            <p className="font-fun text-xl">Draft Your Sticky</p>
+
+            <div className="flex flex-col my-5 items-center">
+                <p className="font-fun">Brush Colour</p>
+                <div className="flex my-2 py-1.5">
+                    <button className="bg-purple-700 ring-purple-400 mx-1.5 rounded-full hover:ring-4
+                        focus:border-stone-900 focus:ring-2 focus:outline-dotted focus:outline-offset-4'"
                         id='purple-brush'
                         onClick={selectPurple}>
                         <svg height='40' width='40' />
@@ -221,5 +226,6 @@ export default function createPage() {
                 </button>
             </div>
         </div>
+        </>
     );
 }
