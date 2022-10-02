@@ -57,6 +57,7 @@ a {
     color-scheme: dark;
   }
   body {
+    padding: 2rem;
     color: black;
     background: white;
   }
