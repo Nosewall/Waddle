@@ -33,8 +33,12 @@ const Login = () => {
         axiosBase
             .post('/login', data)
             .then((response) => {
-                Login(response);
-                router.push('/');
+                axiosBase
+                    .post('/get-name', { userId: response.data })
+                    .then((res) => {
+                        Login(response.data, res.data[0].firstName);
+                        router.push('/');
+                    });
             })
             .catch((err) => {
                 alert(err);
@@ -42,33 +46,47 @@ const Login = () => {
     };
 
     return (
-        <div className="flex flex-col items-center background-image p-20 page-container">
-            <div className="width-1/5"><img className="max-w-xs" src="https://i.imgur.com/yExvwQG.png"/></div>
-            
+        <div className='flex flex-col items-center background-image p-20 page-container'>
+            <div className='width-1/5'>
+                <img
+                    className='max-w-xs'
+                    src='https://i.imgur.com/yExvwQG.png'
+                />
+            </div>
+
             <form className='login my-6' onSubmit={handleSubmit}>
-                    <h1 className='text-center font-fun text-5xl my-4'>Waddle</h1>
+                <h1 className='text-center font-fun text-5xl my-4'>Waddle</h1>
                 <label>
-                    <p className="font-business">Email</p>
+                    <p className='font-business'>Email</p>
                     <input
-                        className="input"
+                        className='input'
                         type={'email'}
                         name={'email'}
                         onChange={handleChange}
-                        placeholder={"abc@email.com"} />
+                        placeholder={'abc@email.com'}
+                    />
                 </label>
                 <label>
-                    <p className="font-business">Password</p>
+                    <p className='font-business'>Password</p>
                     <input
-                        className="input"
+                        className='input'
                         type={'password'}
                         name={'password'}
                         onChange={handleChange}
-                        placeholder={"*****"}
+                        placeholder={'*****'}
                     />
                 </label>
-                <div className="submit flex flex-col">
-                    <button className="bg-pastelTangerine hover:bg-orange-500 scopeFilterButtons font-fun" type={'submit'}>Login</button>
-                    <a className="font-business self-center my-1 hover:underline decoration-boldCyan" href="/signup">Create An Account</a>
+                <div className='submit flex flex-col'>
+                    <button
+                        className='bg-pastelTangerine hover:bg-orange-500 scopeFilterButtons font-fun'
+                        type={'submit'}>
+                        Login
+                    </button>
+                    <a
+                        className='font-business self-center my-1 hover:underline decoration-boldCyan'
+                        href='/signup'>
+                        Create An Account
+                    </a>
                 </div>
             </form>
         </div>

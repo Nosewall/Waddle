@@ -8,7 +8,7 @@ const SignupForm = Object.freeze({
     password: '',
     firstName: '',
     lastName: '',
-    region: '',
+    region: 'AM',
     city: '',
 });
 
@@ -44,8 +44,12 @@ const Signup = () => {
         axiosBase
             .post('/signup', data)
             .then((response) => {
-                Login(response);
-                router.push('/');
+                axiosBase
+                    .post('/get-name', { userId: response.data })
+                    .then((res) => {
+                        Login(response.data, res.data[0].firstName);
+                        router.push('/');
+                    });
             })
             .catch((err) => {
                 alert(err);
@@ -53,21 +57,23 @@ const Signup = () => {
     };
 
     return (
-        <div className="flex flex-col items-center background-image p-20">
+        <div className='flex flex-col items-center background-image p-20'>
             <h1 className='text-center font-fun text-4xl my-4'>Sign Up</h1>
-
 
             <form className='signup my-5' onSubmit={handleSubmit}>
                 <label>
-                    <p className="font-fun">Email</p>
+                    <p className='font-fun'>Email</p>
                     <input
-                        className="font-business input w-[100%]"
-                        type={'email'} name={'email'} onChange={handleChange} />
+                        className='font-business input w-[100%]'
+                        type={'email'}
+                        name={'email'}
+                        onChange={handleChange}
+                    />
                 </label>
                 <label>
-                    <p className="font-fun">Password</p>
+                    <p className='font-fun'>Password</p>
                     <input
-                        className="font-business input w-[100%]"
+                        className='font-business input w-[100%]'
                         type={'password'}
                         name={'password'}
                         onChange={handleChange}
@@ -75,18 +81,18 @@ const Signup = () => {
                 </label>
                 <div>
                     <label>
-                        <p className="font-fun">First Name</p>
+                        <p className='font-fun'>First Name</p>
                         <input
-                            className="font-business input w-[100%]"
+                            className='font-business input w-[100%]'
                             type={'text'}
                             name={'firstName'}
                             onChange={handleChange}
                         />
                     </label>
                     <label>
-                        <p className="font-fun">Last Name</p>
+                        <p className='font-fun'>Last Name</p>
                         <input
-                            className="font-business input w-[100%]"
+                            className='font-business input w-[100%]'
                             type={'text'}
                             name={'lastName'}
                             onChange={handleChange}
@@ -94,19 +100,31 @@ const Signup = () => {
                     </label>
                 </div>
                 <label>
-                    <p className="font-fun">Region</p>
-                    <select onChange={handleChange} className={"input font-business input w-[100%]"}>
-                        <option value={"AM"}>Americas</option>
-                        <option value={"APJ"}>Asia</option>
-                        <option value={"EU"}>Europe</option>
+                    <p className='font-fun'>Region</p>
+                    <select
+                        onChange={handleChange}
+                        className={'input font-business input w-[100%]'}
+                        name={'region'}>
+                        <option value={'AM'}>Americas</option>
+                        <option value={'APJ'}>Asia</option>
+                        <option value={'EU'}>Europe</option>
                     </select>
                 </label>
                 <label>
-                    <p className="font-fun">City</p>
-                    <input className="font-business input w-[100%]" type={'text'} name={'city'} onChange={handleChange} />
+                    <p className='font-fun'>City</p>
+                    <input
+                        className='font-business input w-[100%]'
+                        type={'text'}
+                        name={'city'}
+                        onChange={handleChange}
+                    />
                 </label>
                 <div className='submit flex flex-col my-5'>
-                    <button className="bg-pastelTangerine hover:bg-orange-500 scopeFilterButtons font-fun" type={'submit'}>Submit</button>
+                    <button
+                        className='bg-pastelTangerine hover:bg-orange-500 scopeFilterButtons font-fun'
+                        type={'submit'}>
+                        Submit
+                    </button>
                 </div>
             </form>
         </div>
