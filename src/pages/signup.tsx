@@ -95,15 +95,12 @@ const Signup = () => {
                 </div>
                 <label>
                     <p className="font-fun">Region</p>
-                    <input className="font-business input w-[100%]" type={'text'} name={'region'} onChange={handleChange} />
-                </label>
-                <div className={"m-2"}>
-                    <select className={"input font-business input w-[100%]"}>
+                    <select onChange={handleChange} className={"input font-business input w-[100%]"}>
                         <option value={"AM"}>Americas</option>
                         <option value={"APJ"}>Asia</option>
                         <option value={"EU"}>Europe</option>
                     </select>
-                </div>
+                </label>
                 <label>
                     <p className="font-fun">City</p>
                     <input className="font-business input w-[100%]" type={'text'} name={'city'} onChange={handleChange} />
