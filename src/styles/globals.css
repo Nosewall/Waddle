@@ -31,6 +31,10 @@ a {
 
 @layer components{
 
+  .walbert-bg {
+    background-image: url('https://i.imgur.com/eKKRea2.png')
+  }
+
   .input{
     margin-bottom: 1rem;
     border: 1px solid black;
@@ -49,7 +53,7 @@ a {
     box-shadow: theme('boxShadow.md');
   }
   .scopeFilterButtons:hover{
-    box-shadow: theme('boxShadow.2xl');
+    box-shadow: theme('boxShadow.lg');
     background-color: #00BBF9;
     transition-duration: .5s;
   }
