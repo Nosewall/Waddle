@@ -25,8 +25,8 @@ router.post('/signup', (req, res) => {
         }
 
         connection.query(
-            `INSERT INTO user (userId, email, password, firstName, lastName, displayName, status, region, city, title)
-             VALUES ("${userID}", "${email}", "${password}", "${firstName}", "${lastName}", "${displayName}", "${status}", "${region}", "${city}", "${title}")`,
+            `INSERT INTO user (userId, email, password, firstName, lastName, region, city)
+             VALUES ("${userID}", "${email}", "${password}", "${firstName}", "${lastName}", "${region}", "${city}")`,
             (sqlErr, sqlRes) => {
                 if (sqlErr) {
                     console.error(sqlErr);
@@ -52,7 +52,7 @@ router.post('/login', (req, res) => {
             (sqlErr, sqlRes) => {
                 if (sqlErr) {
                     console.error(sqlErr);
-                    return res.status(400).send('Incorrect email.');
+                    return res.status(400).send('Connection failure.');
                 }
 
                 if (!sqlRes[0]) {
@@ -64,6 +64,29 @@ router.post('/login', (req, res) => {
                 } else {
                     return res.status(400).send('Incorrect password.');
                 }
+            }
+        );
+    });
+});
+
+router.post('/get-name', (req, res) => {
+    const { userId } = req.body;
+
+    getConnection((connectionErr, connection) => {
+        if (connectionErr) {
+            console.error(connectionErr);
+            return res.status(400).send('Connection failure.');
+        }
+
+        connection.query(
+            `SELECT firstName FROM user WHERE userId = "${userId}"`,
+            (sqlErr, sqlRes) => {
+                if (sqlErr) {
+                    console.error(sqlErr);
+                    return res.status(400).send('User does not exist.');
+                }
+
+                return res.status(200).send(sqlRes);
             }
         );
     });
