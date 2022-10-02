@@ -12,29 +12,76 @@ let testEventData = {
     usersAttending: []
 }
 
+let testLocalData = {
+    scope: "Local",
+    location: "SAP Vancouver",
+    time: "4:00PM Pacific",
+    title: "SAP Invitational Hackathon",
+    body: "This is an invitation only hackathon for only the 1337est of Haxors",
+    contactInfo: "778-317-6911",
+    //TODO Add image Field
+    usersAttending: []
+}
+
+let testRegionalData = {
+    scope: "Regional",
+    location: "SAP Vancouver",
+    time: "4:00PM Pacific",
+    title: "SAP Invitational Hackathon",
+    body: "This is an invitation only hackathon for only the 1337est of Haxors",
+    contactInfo: "778-317-6911",
+    //TODO Add image Field
+    usersAttending: []
+}
+
 function eventsPage(props){
+
+    let pageLoaded = false
 
     //The state for the list of events
     const [events, setEvents] = useState([])
+    const [allevents, setAllEvents] = useState([])
 
-    //Grabs all events. For now we'll just set this to my default event
-    const fetchEvents = async () => {
+
+    const fetchAllEvents = async () => {
         //TODO Actually grab this data from the DB
-        const data = [testEventData, testEventData, testEventData, testEventData, testEventData, testEventData, testEventData, testEventData, testEventData, testEventData, ]
+        const data = [testEventData, testLocalData, testRegionalData, testEventData, testEventData, testEventData, testEventData, testEventData, testEventData, testEventData, ]
         setEvents(data)
+        setAllEvents(data)
     }
 
+    function filterList(newFilter){
+        let newEventsList = []
+        switch (newFilter){
+            case "Global":
+                for(let i = 0; i < allevents.length; i++){
+                    if(allevents[i].scope == "global"){
+
+                    }
+                }
+            case "Regional":
+                break
+            case "Local":
+                break
+        }
+    }
+
+
+
     useEffect(() => {
-        fetchEvents().then()
+        if(!pageLoaded){
+            pageLoaded = true
+            fetchAllEvents()
+        }
     }, [])
 
     return (
 
-        <div className="eventsPage bg-slate-50 font-sans">
-            <div className="font-fun font-bold regionButtons flex justify-evenly w-100 min-h-full">
+        <div className="eventsPage bg-slate-50">
+            <div className="font-fun font-extrabold regionButtons flex justify-evenly w-100 min-h-full">
                 <button className={"scopeFilterButtons bg-pastelOrange hover:bg-darkOrange"}>Global</button>
                 <button className={"scopeFilterButtons bg-pastelPurple hover:bg-boldPurple"}>Regional</button>
-                <button className={"scopeFilterButtons bg-pastelBlue hover:bg-boldBlue"}>Local</button>
+                <button className={"scopeFilterButtons bg-pastelBlue hover:bg-boldBlue"} onClick={filterList("Global")}>Local</button>
             </div>
             <div>
                 {events.map(event => (

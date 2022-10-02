@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     fontFamily: {
       'fun': ['virgil'],
-      'business': ['virgil']
+      'business': ['JetBrains']
     },
     extend: {
       colors: {
