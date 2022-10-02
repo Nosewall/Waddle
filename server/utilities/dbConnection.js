@@ -4,7 +4,7 @@ const pool = createPool({
     host: 'localhost',
     port: '3306',
     user: 'admin',
-    password: process.env.DATABASE_PASSWORD || 123,
+    password: process.env.DATABASE_PASSWORD || '123',
     database: 'waddle_v2',
     connectionLimit: 100,
 });
