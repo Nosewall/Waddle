@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import CanvasDraw from 'react-canvas-draw';
 import React from 'react';
 import { useRouter } from 'next/router';
+import { TextInput } from 'flowbite-react';
 
 import axios from 'axios';
 
@@ -24,20 +25,21 @@ export default function createPage() {
 
     const [brushColour, setBrushColour] = useState('#222222');
     const [stickyColour, setStickyColour] = useState(YELLOW_STICKY);
+    const [colourString, setColourString] = useState('Yellow');
+    const [receipientEmail, setRecepientEmail] = useState('');
 
     const saveSticky = () => {
-        console.log(canvasRef.current.getSaveData());
+        console.log(receipientEmail);
         const data = {
             userId: 'da7b3227-5a9e-4c7e-a047-7061840ccdb1',
-            email: 'modibey@gmail.com',
+            email: receipientEmail,
             body: canvasRef.current.getSaveData(),
-            bodyColour: '',
+            bodyColour: colourString,
         };
 
         axiosBase.post('/create-message', data).then(() => {
             router.push('/');
         });
-        console.log(stickyColour);
     };
 
     const clearSticky = () => {
@@ -62,23 +64,33 @@ export default function createPage() {
 
     const yellowSticky = () => {
         setStickyColour(YELLOW_STICKY);
+        setColourString('Yellow');
     };
 
     const pinkSticky = () => {
         setStickyColour(PINK_STICKY);
+        setColourString('Pink');
     };
 
     const greenSticky = () => {
         setStickyColour(GREEN_STICKY);
+        setColourString('Green');
     };
 
     const blueSticky = () => {
         setStickyColour(BLUE_STICKY);
+        setColourString('Blue');
     };
 
     return (
         <div className='flex flex-col items-center'>
-            <p className='font-fun text-xl'>Draft Your Sticky</p>
+            <p className='font-fun text-xl mb-5'>Draft Your Sticky</p>
+
+            <label className='font-fun'>Waddle to: </label>
+            <input className="input w-4/12 enabled:hover:border-orange-600
+            focus:ring-2 ring-organge-400"
+            type="text" required={true} placeholder="Receipient email"
+            value={receipientEmail} onChange={e => {setRecepientEmail(e.target.value)}}/>
 
             <div className='flex flex-col my-5 items-center'>
                 <p className='font-fun'>Brush Colour</p>

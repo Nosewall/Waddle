@@ -29,6 +29,15 @@ a {
 }
 
 @layer components{
+
+
+  .input{
+    margin-bottom: 1rem;
+    border: 1px solid black;
+    border-radius: theme('borderRadius.lg');
+  }
+
+
   .scopeFilterButtons{
     color: black;
     padding-right: theme('spacing.6');
@@ -38,7 +47,7 @@ a {
     margin: 4px;
     border: 1px solid black;
     border-radius: theme('borderRadius.lg');
-    box-shadow: theme('boxShadow.xl');
+    box-shadow: theme('boxShadow.md');
   }
   .scopeFilterButtons:hover{
     box-shadow: theme('boxShadow.2xl');

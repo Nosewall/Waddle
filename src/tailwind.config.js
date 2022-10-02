@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./pages/*.{ts,tsx}", "./components/events/*.{ts,tsx}"],
+  content: ["./pages/*.{ts,tsx}", "./components/events/*.{ts,tsx}", 'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'],
   theme: {
     fontFamily: {
       'fun': ['virgil'],
@@ -32,5 +32,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')
+  ],
 }
