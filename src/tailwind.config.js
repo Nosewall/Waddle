@@ -10,6 +10,7 @@ module.exports = {
         'pastelOrange' : "#FFd670",
         'pastelYellow' : "#E9FF70",
         'pastelPurple' : "#D3A3FF",
+        'pastelGreen' : "#96ffbb",
         'white' : "#FFFFFF",
 
         'boldPurple' : "#9B5DE5",
@@ -22,7 +23,8 @@ module.exports = {
 
         'boldGreen' : "#22c55e",
         'boldRed' : "#f43f5e",
-        'shadowBlack' : "#2b2b2b"
+        'shadowBlack' : "#2b2b2b",
+        'greySelect' : "#c7c7c7"
       },
     },
   },

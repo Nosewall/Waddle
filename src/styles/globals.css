@@ -37,6 +37,10 @@ a {
     transition-duration: .5s;
   }
 
+  .eventConfirmationButton:hover{
+    transition-duration: .5s;
+  }
+
   .bottomLine{
     border-bottom: 1px solid black;
     width: 100%;
