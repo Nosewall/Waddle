@@ -11,6 +11,7 @@ function NewEvent() {
     useEffect(() => {
         if (!CheckSession()) router.push('/login');
     }, []);
+    
     return (
         <>
             <HamburgerMenu />

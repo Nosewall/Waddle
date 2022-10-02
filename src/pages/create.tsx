@@ -129,7 +129,7 @@ export default function createPage() {
                                 🐻
                             </div>
                             <div className="ml-3 text-sm font-normal">
-                                Bad news bears! Something went wrong.
+                                Bad news bears! <br/> Something went wrong.
                             </div>
                         </Toast>
                     </div>
