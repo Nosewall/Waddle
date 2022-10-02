@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import EventCard from '../components/events/eventCard';
+import HamburgerMenu from '../components/nav/hamburgerMenu';
+
 let testEventData = {
     scope: 'Global',
     location: 'SAP Vancouver',
@@ -79,46 +81,50 @@ function events(props) {
     }, []);
 
     return (
-        <div className='eventsPage bg-slate-50'>
-            <div className='font-fun font-extrabold regionButtons flex justify-evenly w-100 min-h-full'>
-                <button
-                    className={
-                        'scopeFilterButtons bg-pastelOrange hover:bg-darkOrange'
-                    }
-                    onClick={() => filterList('Global')}>
-                    Global
-                </button>
-                <button
-                    className={
-                        'scopeFilterButtons bg-pastelPurple hover:bg-boldPurple'
-                    }
-                    onClick={() => filterList('Regional')}>
-                    Regional
-                </button>
-                <button
-                    className={
-                        'scopeFilterButtons bg-pastelBlue hover:bg-boldBlue'
-                    }
-                    onClick={() => filterList('Local')}>
-                    Local
-                </button>
+        <>
+            <HamburgerMenu></HamburgerMenu>
+            <div className='flex flex-col items-center'>
+                <p className='font-fun text-2xl my-6'>Events</p>
+                <div className='font-fun font-extrabold regionButtons flex justify-evenly w-100 min-h-full'>
+                    <button
+                        className={
+                            'scopeFilterButtons bg-pastelOrange hover:bg-darkOrange mx-10'
+                        }
+                        onClick={() => filterList('Global')}>
+                        Global
+                    </button>
+                    <button
+                        className={
+                            'scopeFilterButtons bg-pastelPurple hover:bg-boldPurple mx-10'
+                        }
+                        onClick={() => filterList('Regional')}>
+                        Regional
+                    </button>
+                    <button
+                        className={
+                            'scopeFilterButtons bg-pastelBlue hover:bg-boldBlue mx-10'
+                        }
+                        onClick={() => filterList('Local')}>
+                        Local
+                    </button>
+                </div>
+                <div>
+                    {events.map((event, index) => (
+                        <EventCard
+                            key={index}
+                            scope={event.scope}
+                            location={event.location}
+                            time={event.time}
+                            title={event.title}
+                            body={event.body}
+                            contactInfo={event.contactInfo}
+                            usersAttending={event.usersAttending}>
+                            {props.children}
+                        </EventCard>
+                    ))}
+                </div>
             </div>
-            <div>
-                {events.map((event, index) => (
-                    <EventCard
-                        key={index}
-                        scope={event.scope}
-                        location={event.location}
-                        time={event.time}
-                        title={event.title}
-                        body={event.body}
-                        contactInfo={event.contactInfo}
-                        usersAttending={event.usersAttending}>
-                        {props.children}
-                    </EventCard>
-                ))}
-            </div>
-        </div>
+        </>
     );
 }
 
