@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 import HamburgerMenu from '../components/nav/hamburgerMenu';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '../components/context/AuthContext';
+=======
+import HamburgerMenu from "../components/nav/hamburgerMenu";
+import {motion} from "framer-motion";
+>>>>>>> 5085829d449cbd05bb9beb5db5526eb0b6b649a0
 
 function NewEvent() {
     const router = useRouter();
@@ -12,6 +17,7 @@ function NewEvent() {
     }, []);
     return (
         <>
+<<<<<<< HEAD
             <HamburgerMenu />
             <div
                 className={
@@ -23,6 +29,18 @@ function NewEvent() {
                         className={
                             'input m-2 text-2xl font-business text-center w-[70%]'
                         }></input>
+=======
+            <HamburgerMenu/>
+            <motion.div
+                animate={{opacity: 1, x:0}}
+                initial={{opacity:0, x:-200}}
+                transition={{duration: .75}}
+                className={"border-[1px] border-black text-center font-fun m-5"}>
+
+                <h1 className={"p-2 text-3xl"}>Title</h1>
+                <div className={"m-2"}>
+                    <input className={"input m-2 text-2xl font-business text-center w-[70%]"}></input>
+>>>>>>> 5085829d449cbd05bb9beb5db5526eb0b6b649a0
                 </div>
 
                 <h1 className={'p-2 text-3xl'}>When</h1>
@@ -41,6 +59,7 @@ function NewEvent() {
                         }></input>
                 </div>
 
+<<<<<<< HEAD
                 <h1 className={'p-2 text-3xl'}>Regionality</h1>
                 <div className={'m-2'}>
                     <select
@@ -50,6 +69,23 @@ function NewEvent() {
                         <option value={'Global'}>Global</option>
                         <option value={'Regional'}>Regional</option>
                         <option value={'Local'}>Local</option>
+=======
+                <h1 className={"p-2 text-3xl"}>Locale</h1>
+                <div className={"m-2"}>
+                    <select className={"input m-2 text-2xl font-business text-center w-[70%]"}>
+                        <option value={"Americas"}>Americas</option>
+                        <option value={"Asia"}>Asia</option>
+                        <option value={"Europe"}>Europe</option>
+                    </select>
+                </div>
+
+                <h1 className={"p-2 text-3xl"}>Regionality</h1>
+                <div className={"m-2"}>
+                    <select className={"input m-2 text-2xl font-business text-center w-[70%]"}>
+                        <option value={"Global"}>Global</option>
+                        <option value={"Regional"}>Regional</option>
+                        <option value={"Local"}>Local</option>
+>>>>>>> 5085829d449cbd05bb9beb5db5526eb0b6b649a0
                     </select>
                 </div>
 
@@ -61,6 +97,7 @@ function NewEvent() {
                         }></textarea>
                 </div>
 
+<<<<<<< HEAD
                 <button
                     className={
                         'button border-[1px] p-1 m-4 border-green-300 rounded-md ' +
@@ -70,6 +107,13 @@ function NewEvent() {
                     Go!{' '}
                 </button>
             </div>
+=======
+                <button className={"button border-[1px] p-1 m-4 border-green-300 rounded-md " +
+                    "bg-pastelGreen hover:bg-boldGreen w-[30%] " +
+                    "transition-all duration-75"}>Go! </button>
+
+            </motion.div>
+>>>>>>> 5085829d449cbd05bb9beb5db5526eb0b6b649a0
         </>
     );
 }

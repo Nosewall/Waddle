@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react'; // importing FunctionComponent
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 type EventProps = {
     scope: string;
@@ -30,8 +31,23 @@ function EventCard(props: EventProps) {
             'hover:bg-pastelGreen bg-greySelect hover:bg-greySelect colorDiv bg-darkCyan hover:bg-boldPink hover:bg-darkCyan bg-boldRed bg-pastelRed bg-boldGreen hover:bg-boldPink bg-boldCyan bg-emerald-300 bg-rose-300',
     };
 
+    const eventAnimation = {
+        hidden: {
+            scale: 0.7,
+            x: -100,
+            opacity: 0,
+        },
+        show: {
+            scale: 1,
+            x: 0,
+            opacity: 1,
+        },
+    };
+
     return (
-        <div
+        <motion.div
+            transition={{ duration: 0.75 }}
+            variants={eventAnimation}
             className={
                 'overflow-hidden bg-green-200 rounded-2xl border-black border-[1px] m-3 text-black bg-amber-50 '
             }>
@@ -51,7 +67,7 @@ function EventCard(props: EventProps) {
                 <h3 className={'p-1 font-business'}>{props.contactInfo}</h3>
                 <h4 className={'p-1 font-business'}>{props.body}</h4>
             </div>
-        </div>
+        </motion.div>
     );
 }
 

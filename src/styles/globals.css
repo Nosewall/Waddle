@@ -32,6 +32,10 @@ a {
 
 @layer components{
 
+  .page-container {
+    padding: 1rem 2rem;
+  }
+
   .walbert-bg {
     background-image: url('https://i.imgur.com/eKKRea2.png')
   }
@@ -74,7 +78,6 @@ a {
     color-scheme: light;
   }
   body {
-    padding: 2rem;
     color: black;
     background: white;
   }

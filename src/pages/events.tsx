@@ -4,6 +4,7 @@ import { useAuth } from '../components/context/AuthContext';
 import EventCard from '../components/events/eventCard';
 import HamburgerMenu from '../components/nav/hamburgerMenu';
 import axiosBase from './axiosBase';
+import { motion } from 'framer-motion';
 
 let testEventData = {
     scope: 'Global',
@@ -87,12 +88,24 @@ function events({ props }: any) {
         });
     }, []);
 
+    const staggerChildren = {
+        transition: {
+            when: 'beforeChildren',
+            delayChildren: 0,
+            staggerChildren: 0.3,
+        },
+    };
+
     return (
         <>
             <HamburgerMenu />
-            <div className='flex flex-col items-center'>
+            <div className='flex flex-col items-center page-container'>
                 <p className='font-fun text-2xl my-6'>Events</p>
-                <div className='font-fun font-extrabold regionButtons flex justify-evenly w-100 min-h-full'>
+                <motion.div
+                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.75 }}
+                    className='font-fun font-extrabold regionButtons flex justify-evenly w-100 min-h-full'>
                     <button
                         className={
                             'scopeFilterButtons bg-pastelOrange hover:bg-darkOrange mx-10'
@@ -114,9 +127,13 @@ function events({ props }: any) {
                         onClick={() => filterList('Local')}>
                         Local
                     </button>
-                </div>
-                <div>
-                    {events.map((event: any, index) => (
+                </motion.div>
+                <motion.div
+                    animate={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: -5 }}
+                    transition={{ duration: 0.75 }}
+                    variants={{ staggerChildren }}>
+                    {events.map((event, index) => (
                         <EventCard
                             key={index}
                             scope={event.scope}
@@ -127,7 +144,7 @@ function events({ props }: any) {
                             contactInfo={event.contactInfo}
                         />
                     ))}
-                </div>
+                </motion.div>
             </div>
         </>
     );

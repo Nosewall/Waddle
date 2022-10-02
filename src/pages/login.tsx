@@ -46,7 +46,7 @@ const Login = () => {
     };
 
     return (
-        <div className='flex flex-col items-center background-image p-20'>
+        <div className='flex flex-col items-center background-image p-20 page-container'>
             <div className='width-1/5'>
                 <img
                     className='max-w-xs'

@@ -28,6 +28,7 @@ export default function Sticky(props: StickyProps) {
                 immediateLoading={false}
                 saveData={drawingData}
                 imgSrc={StickyBG[colour]}
+                hideInterface={true}
             />
         </div>
     )

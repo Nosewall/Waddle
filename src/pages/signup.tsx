@@ -8,7 +8,7 @@ const SignupForm = Object.freeze({
     password: '',
     firstName: '',
     lastName: '',
-    region: '',
+    region: 'AM',
     city: '',
 });
 
@@ -47,7 +47,7 @@ const Signup = () => {
                 axiosBase
                     .post('/get-name', { userId: response.data })
                     .then((res) => {
-                        Login(response.data, res.data);
+                        Login(response.data, res.data[0].firstName);
                         router.push('/');
                     });
             })
@@ -64,7 +64,7 @@ const Signup = () => {
                 <label>
                     <p className='font-fun'>Email</p>
                     <input
-                        className='font-business input'
+                        className='font-business input w-[100%]'
                         type={'email'}
                         name={'email'}
                         onChange={handleChange}
@@ -73,7 +73,7 @@ const Signup = () => {
                 <label>
                     <p className='font-fun'>Password</p>
                     <input
-                        className='font-business input'
+                        className='font-business input w-[100%]'
                         type={'password'}
                         name={'password'}
                         onChange={handleChange}
@@ -83,7 +83,7 @@ const Signup = () => {
                     <label>
                         <p className='font-fun'>First Name</p>
                         <input
-                            className='font-business input'
+                            className='font-business input w-[100%]'
                             type={'text'}
                             name={'firstName'}
                             onChange={handleChange}
@@ -92,7 +92,7 @@ const Signup = () => {
                     <label>
                         <p className='font-fun'>Last Name</p>
                         <input
-                            className='font-business input'
+                            className='font-business input w-[100%]'
                             type={'text'}
                             name={'lastName'}
                             onChange={handleChange}
@@ -101,17 +101,19 @@ const Signup = () => {
                 </div>
                 <label>
                     <p className='font-fun'>Region</p>
-                    <input
-                        className='font-business input'
-                        type={'text'}
-                        name={'region'}
+                    <select
                         onChange={handleChange}
-                    />
+                        className={'input font-business input w-[100%]'}
+                        name={'region'}>
+                        <option value={'AM'}>Americas</option>
+                        <option value={'APJ'}>Asia</option>
+                        <option value={'EU'}>Europe</option>
+                    </select>
                 </label>
                 <label>
                     <p className='font-fun'>City</p>
                     <input
-                        className='font-business input'
+                        className='font-business input w-[100%]'
                         type={'text'}
                         name={'city'}
                         onChange={handleChange}
