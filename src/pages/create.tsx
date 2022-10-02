@@ -53,9 +53,16 @@ export default function createPage() {
         axiosBase.post('/create-message', data).then(() => {
             // move duck and clear board
         });
+
+        // success
         toggleDuck();
         canvasRef.current.clear()
         setShowSuccess(true);
+        setTimeout(() => { setShowSuccess(false) }, 3000);
+
+        // error
+        setShowError(true);
+        setTimeout(() => { setShowError(false) }, 3000);
     };
 
     const clearSticky = () => {
@@ -111,7 +118,8 @@ export default function createPage() {
                 {showSuccess && (
                     <div className="fixed z-30">
                         <Toast>
-                            <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-100 text-blue-500 dark:bg-blue-800 dark:text-blue-200">
+                            <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-boldPurple text-blue-500 dark:bg-blue-800 dark:text-blue-200">
+                                ✨
                             </div>
                             <div className="ml-3 text-sm font-normal">
                                 Walbert delivered your Sticky successfully!
@@ -120,10 +128,23 @@ export default function createPage() {
                     </div>
                 )}
 
+                {showError && (
+                    <div className="fixed z-30">
+                        <Toast>
+                            <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-red-500 text-blue-500 dark:bg-blue-800 dark:text-blue-200">
+                                🐻
+                            </div>
+                            <div className="ml-3 text-sm font-normal">
+                                Bad news bears! Something went wrong.
+                            </div>
+                        </Toast>
+                    </div>
+                )}
+
                 <p className='font-fun text-2xl my-6'>Draft Your Sticky</p>
 
-                <label className='font-fun'>Waddle to: </label>
-                <input className="input w-4/12 enabled:hover:border-orange-600
+                <label className='font-fun'>Post to: </label>
+                <input className="font-business input w-4/12 enabled:hover:border-orange-600
             focus:ring-2 ring-organge-400"
                     type="text" required={true} placeholder="Receipient email"
                     value={receipientEmail} onChange={e => { setRecepientEmail(e.target.value) }} />
