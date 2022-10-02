@@ -12,7 +12,7 @@ function NewEvent() {
     const [showError, setShowError] = useState(false);
 
     useEffect(() => {
-        // if (!CheckSession()) router.push('/login');
+        if (!CheckSession()) router.push('/login');
     }, []);
 
     const submitForm = () => {
