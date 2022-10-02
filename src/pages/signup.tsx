@@ -125,6 +125,11 @@ const Signup = () => {
                         type={'submit'}>
                         Submit
                     </button>
+                    <a
+                        className='font-business self-center my-1 hover:underline decoration-boldCyan'
+                        href='/login'>
+                        back to Login
+                    </a>
                 </div>
             </form>
         </div>
