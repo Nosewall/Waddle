@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react'; // importing FunctionComponent
 import { useEffect, useState } from 'react';
 
+
 type EventProps = {
     scope: string,
     location: string,

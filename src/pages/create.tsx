@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import CanvasDraw from 'react-canvas-draw';
 import React from 'react';
+import HamburgerMenu from "../components/nav/hamburgerMenu";
 
 export default function createPage() {
 
@@ -56,8 +57,10 @@ export default function createPage() {
     }
 
     return (
-
+        <>
+            <HamburgerMenu/>
         <div className="flex flex-col items-center">
+
             <p className="font-fun text-xl">Draft Your Sticky</p>
 
             <div className="flex flex-col my-5 items-center">
@@ -164,6 +167,6 @@ export default function createPage() {
             </div>
 
         </div>
-
+        </>
     );
 }
