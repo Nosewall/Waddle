@@ -3,6 +3,7 @@ import CanvasDraw from 'react-canvas-draw';
 import React from 'react';
 import { useRouter } from 'next/router';
 import HamburgerMenu from "../components/nav/hamburgerMenu";
+import { Modal, Button } from 'flowbite-react';
 
 import axios from 'axios';
 
@@ -29,6 +30,7 @@ export default function createPage() {
     const [stickyColour, setStickyColour] = useState(YELLOW_STICKY);
     const [colourString, setColourString] = useState('Yellow');
     const [receipientEmail, setRecepientEmail] = useState('');
+    const [showModal, setShowModal] = useState(false);
 
     const saveSticky = () => {
         let blob = canvasRef.current.getSaveData();
@@ -47,6 +49,7 @@ export default function createPage() {
 
     const clearSticky = () => {
         canvasRef.current.clear();
+        setShowModal(false);
     };
 
     const selectPurple = () => {
@@ -84,6 +87,14 @@ export default function createPage() {
         setStickyColour(BLUE_STICKY);
         setColourString('Blue');
     };
+
+    const onClose = () => {
+        setShowModal(false);
+    }
+
+    const onClick = () => {
+
+    }
 
     return (
         <>
@@ -223,7 +234,7 @@ export default function createPage() {
                 <div className='flex'>
                     <button
                         className='mr-10 font-fun bg-white hover:bg-greySelect scopeFilterButtons'
-                        onClick={clearSticky}>
+                        onClick={() => setShowModal(true)}>
                         Clear All
                     </button>
                     <button
@@ -234,6 +245,35 @@ export default function createPage() {
                         Post it!
                     </button>
                 </div>
+
+                <Modal
+                    show={showModal}
+                    size="md"
+                    popup={true}
+                    onClose={onClose}
+                >
+                    <Modal.Header />
+                    <Modal.Body>
+                        <div className="text-center">
+                            <h3 className="font-fun mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+                                Are you sure you want clear your sticky? Everything will be thrown out!
+                            </h3>
+                            <div className="flex justify-center gap-4">
+                                <button className="bg-pastelTangerine hover:bg-orange-500 scopeFilterButtons font-fun"
+                                    onClick={clearSticky}
+                                >
+                                    Yes, I'm sure
+                                </button>
+                                <button
+                                    className='mr-10 font-fun bg-white hover:bg-greySelect scopeFilterButtons'
+                                    onClick={onClose}
+                                >
+                                    No, cancel
+                                </button>
+                            </div>
+                        </div>
+                    </Modal.Body>
+                </Modal>
             </div>
         </>
     );
