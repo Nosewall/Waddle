@@ -27,6 +27,7 @@ a {
 
 * {
   box-sizing: border-box;
+  z-index: inherit;
 }
 
 @layer components{

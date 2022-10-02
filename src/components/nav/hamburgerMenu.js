@@ -27,6 +27,9 @@ function MobileNav({open, setOpen}) {
                 <a className="text-xl font-normal my-4" href="/waddln" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
                     Wadln
                 </a>
+                <a className="text-xl font-normal my-4" href="/newEvent" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
+                    New Event
+                </a>
             </div>
         </div>
     )
@@ -43,7 +46,7 @@ export default function HamburgerMenu() {
                     <Image src={walbert_head} alt={"walberts head"} width={"75%"} height={"75%"}/>
                 </a>
             </div>
-            <div className="w-9/12 flex justify-end items-center">
+            <div className="w-9/12 flex justify-end">
 
                 <div className="z-50 flex relative w-8 h-8 flex-col justify-between items-center md:hidden" onClick={() => {
                     setOpen(!open)
@@ -54,7 +57,7 @@ export default function HamburgerMenu() {
                     <span className={`h-1 w-full bg-black rounded-lg transform transition duration-300 ease-in-out ${open ? "-rotate-45 -translate-y-3.5" : ""}`} />
                 </div>
 
-                <div className="hidden md:flex font-fun">
+                <div className="hidden md:flex justify-evenly font-fun">
                     <NavLink to="/create">
                         Sticky
                     </NavLink>
@@ -63,6 +66,9 @@ export default function HamburgerMenu() {
                     </NavLink>
                     <NavLink to="/waddln">
                         Wadln
+                    </NavLink>
+                    <NavLink to="/newEvent">
+                        New Event
                     </NavLink>
                 </div>
             </div>

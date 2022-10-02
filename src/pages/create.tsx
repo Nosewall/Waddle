@@ -151,8 +151,7 @@ export default function createPage() {
                         </button>
                     </div>
                 </div>
-
-                <div className='p-0.5'>
+                <div className='border-2 p-0.5 z-20'>
                     <CanvasDraw
                         ref={canvasRef}
                         hideGrid={true}
