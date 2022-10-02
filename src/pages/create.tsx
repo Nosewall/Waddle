@@ -47,19 +47,16 @@ export default function createPage() {
         };
 
         axiosBase.post('/create-message', data).then(() => {
-            // move duck and clear board
+            toggleDuck();
+            canvasRef.current.clear()
+            setShowSuccess(true);
+            setTimeout(() => { setShowSuccess(false) }, 3000);
+            setTimeout(() => { setShowDuck(!showDuck) }, 5000);
+        }
+        ).catch((error) => {
+            setShowError(true);
+            setTimeout(() => { setShowError(false) }, 3000);
         });
-
-        // success
-        toggleDuck();
-        canvasRef.current.clear()
-        setShowSuccess(true);
-        setTimeout(() => { setShowSuccess(false) }, 3000);
-        setTimeout(() => { setShowDuck(!showDuck) }, 5000);
-
-        // error
-        setShowError(true);
-        setTimeout(() => { setShowError(false) }, 3000);
     };
 
     const clearSticky = () => {
@@ -140,10 +137,10 @@ export default function createPage() {
 
                 <p className='font-fun text-2xl my-6'>Draft Your Sticky</p>
 
-                <label className='font-fun'>Waddle to: </label>
+                <label className='font-fun'>Post to: </label>
                 <input
                     className='input w-4/12 enabled:hover:border-orange-600
-            focus:ring-2 ring-organge-400'
+            focus:ring-2 ring-orange-400'
                     type='text'
                     required={true}
                     placeholder='Receipient email'
