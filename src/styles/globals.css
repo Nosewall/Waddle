@@ -30,13 +30,11 @@ a {
 
 @layer components{
 
-
   .input{
     margin-bottom: 1rem;
     border: 1px solid black;
     border-radius: theme('borderRadius.lg');
   }
-
 
   .scopeFilterButtons{
     color: black;
