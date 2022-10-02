@@ -1,7 +1,5 @@
 import React, { FunctionComponent } from 'react'; // importing FunctionComponent
 import { useEffect, useState } from 'react';
-import {router} from "next/client";
-import eventsPage from "../../pages/eventsPage";
 
 type EventProps = {
     scope: string,
@@ -58,11 +56,13 @@ function EventCard(props : EventProps) {
     return (
         <div className={"overflow-hidden bg-green-200 rounded-2xl border-black border-[1px] m-3 text-black bg-amber-50 " }>
             <div id={styles.dynamicColor}></div>
-            <h1 className={"font-extrabold text-xl font-fun border-black bottomLine p-1 " + "bg-" + getColor(props.scope) + ""}>{props.title}</h1>
+            <h1 className={"font-extrabold text-xl font-fun border-black bottomLine p-2 " + "bg-" + getColor(props.scope) + ""}>{props.title}</h1>
+            <div className="p-3">
             <h2 className={"font-bold font-business p-1"}>{props.time}</h2>
             <h2 className={"p-1 font-business"}>{props.location}</h2>
             <h3 className={"p-1 font-business"}>{props.contactInfo}</h3>
             <h4 className={"p-1 font-business"}>{props.body}</h4>
+            </div>
         </div>
     )
 

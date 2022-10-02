@@ -90,7 +90,7 @@ function eventsPage(props){
 
     return (
 
-        <div className="eventsPage bg-slate-50">
+        <>
             <div className="font-fun font-extrabold regionButtons flex justify-evenly w-100 min-h-full">
                 <button className={"scopeFilterButtons bg-pastelOrange hover:bg-darkOrange"} onClick={() => filterList("Global")}>Global</button>
                 <button className={"scopeFilterButtons bg-pastelPurple hover:bg-boldPurple"} onClick={() => filterList("Regional")}>Regional</button>
@@ -111,7 +111,7 @@ function eventsPage(props){
                     </EventCard>
                 ))}
             </div>
-        </div>
+        </>
     )
 }
 
