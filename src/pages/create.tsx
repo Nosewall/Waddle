@@ -31,10 +31,12 @@ export default function createPage() {
     const [receipientEmail, setRecepientEmail] = useState('');
 
     const saveSticky = () => {
+        let blob = canvasRef.current.getSaveData();
+        console.log(blob)
         const data = {
             userId: 'da7b3227-5a9e-4c7e-a047-7061840ccdb1',
             email: receipientEmail,
-            body: canvasRef.current.getSaveData(),
+            body: blob,
             bodyColour: colourString,
         };
 
@@ -150,7 +152,7 @@ export default function createPage() {
                     </div>
                 </div>
 
-                <div className='border-2 p-0.5'>
+                <div className='p-0.5'>
                     <CanvasDraw
                         ref={canvasRef}
                         hideGrid={true}
@@ -221,7 +223,7 @@ export default function createPage() {
 
                 <div className='flex'>
                     <button
-                        className='mr-10 font-fun bg-white hover:bg-greySelect scopeFilterButtons hover:bg-orange-500 m'
+                        className='mr-10 font-fun bg-white hover:bg-greySelect scopeFilterButtons'
                         onClick={clearSticky}>
                         Clear All
                     </button>
