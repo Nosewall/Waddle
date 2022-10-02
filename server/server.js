@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 
 import userRouter from './routers/userRouter.js';
 import messageRouter from './routers/messageRouter.js';
+import eventRouter from './routers/eventRouter.js';
 
 const app = express();
 const port = process.env.PORT || 9400;
@@ -33,6 +34,7 @@ app.use((req, res, next) => {
 
 app.use('/', userRouter);
 app.use('/', messageRouter);
+app.use('/', eventRouter);
 
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);
