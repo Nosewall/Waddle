@@ -227,7 +227,18 @@ export default function createPage() {
                         </button>
                     </div>
                 </div>
+                { showDuck && (
+                    <motion.div
 
+                        animate={{opacity: 1, x: -500, y: -800}}
+                        initial={{opacity: 0, y: 400, x: 0}}
+                        transition={{duration: 5}}
+                        className={"z-50 absolute"}>
+                        <Image src={waddles}
+                        />
+
+                    </motion.div>
+                )}
                 <div className='flex'>
                     <button
                         className='mr-10 font-fun bg-white hover:bg-greySelect scopeFilterButtons'
@@ -242,17 +253,6 @@ export default function createPage() {
                         Post it!
                     </button>
                 </div>
-                { showDuck && (
-                    <motion.div
-                        animate={{opacity: 1, x: -1000, y: -1500}}
-                        initial={{opacity: 0, y: -300, x: 100}}
-                        transition={{duration: 5}}
-                        className={"z-50"}>
-                        <Image src={waddles}
-                        />
-
-                    </motion.div>
-                )}
             </div>
         </>
     );
