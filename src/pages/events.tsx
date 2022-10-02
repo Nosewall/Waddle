@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useAuth } from '../components/context/AuthContext';
 import EventCard from '../components/events/eventCard';
 import HamburgerMenu from '../components/nav/hamburgerMenu';
-import {motion} from "framer-motion";
+import axiosBase from './axiosBase';
+import { motion } from 'framer-motion';
 
 let testEventData = {
     scope: 'Global',
@@ -33,17 +36,11 @@ let testRegionalData = {
     //TODO Add image Field
     usersAttending: [],
 };
-function events(props) {
+function events({ props }: any) {
     let pageLoaded = false;
     //The state for the list of events
     const [events, setEvents] = useState([]);
     const [allevents, setAllEvents] = useState([]);
-    const fetchAllEvents = async () => {
-        //TODO Actually grab this data from the DB
-        const data = [testEventData, testLocalData, testRegionalData];
-        setEvents(data);
-        setAllEvents(data);
-    };
     function filterList(newFilter) {
         setEvents([]);
         let newEventsList = [];
@@ -74,30 +71,42 @@ function events(props) {
         setEvents(newEventsList);
         console.log(events);
     }
+
+    const { CheckSession } = useAuth();
+    const router = useRouter();
+
     useEffect(() => {
+        if (!CheckSession()) router.push('/login');
         if (!pageLoaded) {
             pageLoaded = true;
-            fetchAllEvents();
+            //fetchAllEvents();
         }
+        axiosBase.get('/get-all-events').then((response) => {
+            setEvents(response.data);
+            setAllEvents(response.data);
+            console.log(response.data);
+        });
     }, []);
 
-    const staggerChildren ={
-        transition :{
-            when: "beforeChildren",
-            delayChildren: 0,
-            staggerChildren: 0.3,
+    const variantForChildren ={
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.5
+            }
         }
     }
 
     return (
         <>
-            <HamburgerMenu/>
-            <div className="flex flex-col items-center page-container">
+            <HamburgerMenu />
+            <div className='flex flex-col items-center page-container'>
                 <p className='font-fun text-2xl my-6'>Events</p>
                 <motion.div
-                    animate={{opacity: 1, y:0}}
-                    initial={{opacity:0, y:-20}}
-                    transition={{duration: .75}}
+                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.75 }}
                     className='font-fun font-extrabold regionButtons flex justify-evenly w-100 min-h-full'>
                     <button
                         className={
@@ -122,11 +131,10 @@ function events(props) {
                     </button>
                 </motion.div>
                 <motion.div
-                    animate={{opacity: 1, x:0}}
-                    initial={{opacity:0, y:-5}}
-                    transition={{duration: .75}}
-                    variants={{staggerChildren}}
-                >
+                    animate={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: -5 }}
+                    transition={{ duration: 0.75 }}
+                    variants={variantForChildren}>
                     {events.map((event, index) => (
                         <EventCard
                             key={index}
@@ -136,9 +144,7 @@ function events(props) {
                             title={event.title}
                             body={event.body}
                             contactInfo={event.contactInfo}
-                            usersAttending={event.usersAttending}>
-                            {props.children}
-                        </EventCard>
+                        />
                     ))}
                 </motion.div>
             </div>

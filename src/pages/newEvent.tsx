@@ -1,7 +1,16 @@
-import HamburgerMenu from "../components/nav/hamburgerMenu";
-import { motion } from "framer-motion";
+import HamburgerMenu from '../components/nav/hamburgerMenu';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useAuth } from '../components/context/AuthContext';
+import { motion } from 'framer-motion';
 
 function NewEvent() {
+    const router = useRouter();
+    const { CheckSession } = useAuth();
+
+    useEffect(() => {
+        if (!CheckSession()) router.push('/login');
+    }, []);
     return (
         <>
             <HamburgerMenu />
@@ -50,7 +59,7 @@ function NewEvent() {
                 </motion.div>
             </div>
         </>
-    )
+    );
 }
 
-export default NewEvent
+export default NewEvent;
