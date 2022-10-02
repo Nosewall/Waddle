@@ -9,8 +9,9 @@ function NavLink({to, children}) {
 }
 
 function MobileNav({open, setOpen}) {
+
     return (
-        <div className={`z-10 absolute top-0 left-0 h-screen w-screen bg-white transform ${open ? "-translate-x-0 " : "-translate-x-full hidden"} transition-transform duration-300 ease-in-out filter  `}>
+        <div className={`MobileNavbar z-10 absolute top-0 left-0 h-screen w-screen bg-white transform ${open ? "-translate-x-0 " : "-translate-x-full opacity-0"} transition duration-300 ease-in-out filter transition-visibility `}>
             <div className="flex items-center justify-center filter drop-shadow-md bg-white h-20"> {/*logo container*/}
                 <a className="text-2xl font-semibold" href="/">
                     <Image src={walbert_head} alt={"walberts head"} width={"75%"} height={"75%"}/>
