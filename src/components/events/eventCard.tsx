@@ -49,8 +49,9 @@ function EventCard(props : EventProps) {
 
     return (
         <motion.div
-            transition={{duration: .75}}
             variants={eventAnimation}
+            initial="hidden"
+            animate="show"
             className={"overflow-hidden bg-green-200 rounded-2xl border-black border-[1px] m-3 text-black bg-amber-50 " }>
             <div id={styles.dynamicColor}></div>
             <h1 className={"font-extrabold text-xl font-fun border-black bottomLine p-2 " + "bg-" + getColor(props.scope) + ""}>{props.title}</h1>

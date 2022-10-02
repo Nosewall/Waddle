@@ -81,11 +81,13 @@ function events(props) {
         }
     }, []);
 
-    const staggerChildren ={
-        transition :{
-            when: "beforeChildren",
-            delayChildren: 0,
-            staggerChildren: 0.3,
+    const variantForChildren ={
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.5
+            }
         }
     }
 
@@ -97,7 +99,8 @@ function events(props) {
                 <motion.div
                     animate={{opacity: 1, y:0}}
                     initial={{opacity:0, y:-20}}
-                    transition={{duration: .75}}
+                    transition={{
+                        duration: .75}}
                     className='font-fun font-extrabold regionButtons flex justify-evenly w-100 min-h-full'>
                     <button
                         className={
@@ -122,10 +125,9 @@ function events(props) {
                     </button>
                 </motion.div>
                 <motion.div
-                    animate={{opacity: 1, x:0}}
-                    initial={{opacity:0, y:-5}}
-                    transition={{duration: .75}}
-                    variants={{staggerChildren}}
+                    variants={variantForChildren}
+                    animate="show"
+                    initial="hidden"
                 >
                     {events.map((event, index) => (
                         <EventCard
