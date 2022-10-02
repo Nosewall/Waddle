@@ -61,7 +61,8 @@ a {
     color-scheme: dark;
   }
   body {
-    color: white;
-    background: black;
+    padding: 2rem;
+    color: black;
+    background: white;
   }
 }
