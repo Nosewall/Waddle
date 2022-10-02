@@ -53,52 +53,59 @@ const Signup = () => {
     };
 
     return (
-        <form className={'signup'} onSubmit={handleSubmit}>
-            <div>
-                <h1>Sign Up</h1>
-            </div>
-            <label>
-                <p>Email</p>
-                <input type={'email'} name={'email'} onChange={handleChange} />
-            </label>
-            <label>
-                <p>Password</p>
-                <input
-                    type={'password'}
-                    name={'password'}
-                    onChange={handleChange}
-                />
-            </label>
-            <div>
+        <div className="flex flex-col items-center background-image p-20">
+            <h1 className='text-center font-fun text-4xl my-4'>Sign Up</h1>
+
+
+            <form className='signup my-5' onSubmit={handleSubmit}>
                 <label>
-                    <p>First Name</p>
+                    <p className="font-fun">Email</p>
                     <input
-                        type={'text'}
-                        name={'firstName'}
+                        className="font-business input"
+                        type={'email'} name={'email'} onChange={handleChange} />
+                </label>
+                <label>
+                    <p className="font-fun">Password</p>
+                    <input
+                        className="font-business input"
+                        type={'password'}
+                        name={'password'}
                         onChange={handleChange}
                     />
                 </label>
+                <div>
+                    <label>
+                        <p className="font-fun">First Name</p>
+                        <input
+                            className="font-business input"
+                            type={'text'}
+                            name={'firstName'}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <label>
+                        <p className="font-fun">Last Name</p>
+                        <input
+                            className="font-business input"
+                            type={'text'}
+                            name={'lastName'}
+                            onChange={handleChange}
+                        />
+                    </label>
+                </div>
                 <label>
-                    <p>Last Name</p>
-                    <input
-                        type={'text'}
-                        name={'lastName'}
-                        onChange={handleChange}
-                    />
+                    <p className="font-fun">Region</p>
+                    <input className="font-business input" type={'text'} name={'region'} onChange={handleChange} />
                 </label>
-            </div>
-            <label>
-                <p>Region</p>
-                <input type={'text'} name={'region'} onChange={handleChange} />
-            </label>
-            <label>
-                <p>City</p>
-                <input type={'text'} name={'city'} onChange={handleChange} />
-            </label>
-            <div className={'submit'}>
-                <button type={'submit'}>submit</button>
-            </div>
-        </form>
+                <label>
+                    <p className="font-fun">City</p>
+                    <input className="font-business input" type={'text'} name={'city'} onChange={handleChange} />
+                </label>
+                <div className='submit flex flex-col my-5'>
+                    <button className="bg-pastelTangerine hover:bg-orange-500 scopeFilterButtons font-fun" type={'submit'}>Submit</button>
+                </div>
+            </form>
+        </div>
     );
 };
 
