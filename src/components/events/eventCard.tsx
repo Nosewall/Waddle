@@ -20,15 +20,14 @@ type EventProps = {
 function EventCard(props : EventProps) {
 
     const [attending, setAttending] = useState([])
-    const [color, setColor] = useState([])
     const [attendanceColor, setAttendance] = useState([])
 
     const fetchAttenting = async () => {
         //TODO Actually grab this data from db
-        setAttending(["I'm Attending!", true])
-        console.log(attending)
+        setAttending(["Not Attending", true])
     }
-    const getAttendanceColor = async () => {
+
+    const getAttendanceColor = () => {
         if(!attending[1]){
             setAttendance(["greySelect", "pastelGreen"] )
         }else{
@@ -36,35 +35,20 @@ function EventCard(props : EventProps) {
         }
 
     }
-    const getColor = async () => {
-        let color = "pastelOrange"
-        if(props.scope == "Global"){
-            color = "pastelOrange"
-        } else if(props.scope == "Regional"){
-            color = "pastelPurple"
-        } else if(props.scope == "Local"){
-            color = "pastelBlue"
+
+    const getColor = (scope) => {
+        if(scope == "Global"){
+           return "pastelOrange"
+        } else if(scope == "Regional"){
+            return "pastelPurple"
+        } else if(scope == "Local"){
+            return "pastelBlue"
         }
-        setColor([color])
     }
 
     useEffect(() =>{
-        fetchAttenting().then()
-        getColor().then()
-        getAttendanceColor().then()
+        getColor(props)
     }, [])
-
-    const switchAttendance = async () => {
-        console.log("Switching Attendance!")
-        console.log("Current Attendance: ")
-        console.log(attending);
-        setAttending(["I'm Not Attending Anymore!", false])
-        getAttendanceColor().then(()  => {
-            console.log("Attendance after switch:")
-            console.log(attending)
-        });
-
-    }
 
 
     const styles = {
@@ -74,18 +58,11 @@ function EventCard(props : EventProps) {
     return (
         <div className={"overflow-hidden bg-green-200 rounded-2xl border-black border-[1px] m-3 text-black bg-amber-50 " }>
             <div id={styles.dynamicColor}></div>
-            <h1 className={"font-extrabold text-xl font-fun border-black bottomLine p-1 " + "bg-" + color + ""}>{props.title}</h1>
+            <h1 className={"font-extrabold text-xl font-fun border-black bottomLine p-1 " + "bg-" + getColor(props.scope) + ""}>{props.title}</h1>
             <h2 className={"font-bold font-business p-1"}>{props.time}</h2>
             <h2 className={"p-1 font-business"}>{props.location}</h2>
             <h3 className={"p-1 font-business"}>{props.contactInfo}</h3>
             <h4 className={"p-1 font-business"}>{props.body}</h4>
-            <div className={"flex justify-center"}>
-                <button className={"p-1 m-3 font-fun hover:transition-5s eventConfirmationButton " +
-                    " shadow-md border-[1px] border-black font-bold shadow-med transition-duration: 150ms;" +
-                    " bg-" + attendanceColor[0] + " hover:bg-" + attendanceColor[1] +
-                    " rounded-lg"} onClick={switchAttendance}>{attending[0]}</button>
-
-            </div>
         </div>
     )
 
