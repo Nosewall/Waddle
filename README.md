@@ -1,5 +1,5 @@
 # Waddle
-A office Culture App with a lot of heart.
+An office Culture App with a lot of heart.
 
 Waddle has been submitted as a hackathon project for SAP VanHack 2022, where the project was placed as a 2nd runner up to a total of 35 student projects that were formed over a weekend.
 
